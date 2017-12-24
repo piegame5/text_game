@@ -2,7 +2,7 @@ import pygame
 import time
 
 pygame.init()
-
+print("hi")
 pygame.font.get_fonts()
 
 pygame.mixer.music.load("cr_music.mp3")

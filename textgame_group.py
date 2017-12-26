@@ -645,9 +645,10 @@ while not gameExit:
 		chapter_pointer = 4
 	
 		
-	
+		
 
-#testing whether covering code is available	or not~
+#test again
+
 
 
 

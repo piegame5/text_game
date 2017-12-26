@@ -646,7 +646,9 @@ while not gameExit:
 	
 		
 	
+
 #testing whether covering code is available	or not~
+
 
 
 	

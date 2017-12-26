@@ -647,7 +647,13 @@ while not gameExit:
 		
 		
 	
+<<<<<<< HEAD
 #test again
+=======
+
+#testing whether covering code is available	or not~
+>>>>>>> 91248b8b8b8190cc3c12b6a96bdfef8fc2331a70
+
 
 
 	

@@ -2,7 +2,7 @@ import pygame
 import time
 
 pygame.init()
-print("hi")
+
 pygame.font.get_fonts()
 
 pygame.mixer.music.load("cr_music.mp3")
@@ -168,12 +168,17 @@ def change_background(now, new, changespeed):
 
 
 def chapter_1():
-	global x, goch1, par, theblock_for_changing_background
+	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2
 	
 	
 	
 	if par == 1:
 		theblock_for_changing_background = 12 + 1
+		
+		if playmusic == True:
+			pygame.mixer.music.play(-1)
+			playmusic = False
+			
 		if x == 0:
 			original_board("sakura.jpg")
 		elif x == 1:
@@ -204,9 +209,19 @@ def chapter_1():
 			par += 1
 			x = 0
 	
+	
+	
 
 	elif par == 2:
 		theblock_for_changing_background = 21 + 1
+		
+		if playmusic2 == True:
+			pygame.mixer.music.fadeout(1000)
+			pygame.mixer.music.load("kara_m01.mp3")
+			pygame.mixer.music.play(-1)
+			playmusic2 = False
+			
+			
 		if x == 0:
 			original_board("aniback.jpg")
 		elif x == 1:
@@ -580,17 +595,17 @@ x = 0
 par = 1
 chapter_pointer = 1	
 playmusic = True
+playmusic2 = True
 
 goch1 = True
 goch2 = True
 goch3 = True	
 
+#main loop
 while not gameExit:
 	clock.tick(60)
 	
-	if playmusic == True:
-		pygame.mixer.music.play(-1)
-		playmusic = False
+	
 	
 	if x > theblock_for_changing_background:
 		x = theblock_for_changing_background - 1
@@ -630,8 +645,8 @@ while not gameExit:
 		chapter_pointer = 4
 	
 		
-#testing whether covering code is available or not?	
 	
+#testing whether covering code is available	or not~
 
 
 	

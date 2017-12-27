@@ -1,12 +1,10 @@
 import pygame
 import time
+import pickle
 
 pygame.init()
 
 pygame.font.get_fonts()
-
-pygame.mixer.music.load("cr_music.mp3")
-#crowd_sound = pygame.mixer.Sound("cr_music.mp3")
 
 red = (255,0,0)
 white = (255,255,255)
@@ -52,7 +50,9 @@ def show_text_4(text4):
 	message_to_screen(text4,black,25,670)
 	pygame.display.update()
 	
-def original_board(background_file):
+def original_board(bg):
+	global background_file
+	background_file = bg
 	background = pygame.image.load(background_file).convert()
 	screen.blit(background, (0, 0))
 	pygame.display.update()
@@ -168,7 +168,7 @@ def change_background(now, new, changespeed):
 
 
 def chapter_1():
-	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2
+	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom
 	
 	
 	
@@ -176,7 +176,7 @@ def chapter_1():
 		theblock_for_changing_background = 12 + 1
 		
 		if playmusic == True:
-			pygame.mixer.music.play(-1)
+			pygame.mixer.music.play(-1)	
 			playmusic = False
 			
 		if x == 0:
@@ -218,7 +218,9 @@ def chapter_1():
 		if playmusic2 == True:
 			pygame.mixer.music.fadeout(1000)
 			pygame.mixer.music.load("kara_m01.mp3")
-			pygame.mixer.music.play(-1)
+			musicfrom = 0
+			nowplaying = "kara_m01.mp3"
+			pygame.mixer.music.play(-1)	
 			playmusic2 = False
 			
 			
@@ -591,6 +593,122 @@ def chapter_3():
 			x = 0
 			goch3 = False
 
+			
+def saving():
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
+	
+	saved = False
+	while not saved:
+		pygame.draw.rect(screen, black, [200, 50, 700, 70])
+		message_to_screen("WHICH FILE DO YOU WANT TO SAVE THE GAME?(1/2/3)", white, 210, 70)
+		pygame.display.flip()
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				gameExit = True
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					saved = True
+				if event.key == pygame.K_1:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved1", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+				if event.key == pygame.K_2:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved2", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+				if event.key == pygame.K_3:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved3", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+	
+	gameExit = True			
+	
+	
+def loading():
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
+	
+	loaded = False	
+	while not loaded:
+		#global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file
+		
+		#clock.tick(60)
+
+		screen.fill(white)
+		pygame.draw.rect(screen, black, [540, 50, 200, 70], 10)
+		message_to_screen("NEW GAME",black,590,70)
+		pygame.draw.rect(screen, black, [540, 150, 200, 70], 10)
+		message_to_screen("DATA1",black,610,170)
+		pygame.draw.rect(screen, black, [540, 250, 200, 70], 10)
+		message_to_screen("DATA2",black,610,270)
+		pygame.draw.rect(screen, black, [540, 350, 200, 70], 10)
+		message_to_screen("DATA3",black,610,370)
+		pygame.display.flip()	
+		
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				gameExit = True
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_n:	
+					loaded = True
+				
+				if event.key == pygame.K_1:	
+					with open("saved1", "rb") as f:
+						data = pickle.load(f)						
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+				if event.key == pygame.K_2:
+					with open("saved2", "rb") as f:
+						data = pickle.load(f)							
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+				if event.key == pygame.K_3:
+					with open("saved3", "rb") as f:
+						data = pickle.load(f)									
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+	
+	
+
+data = list()
 x = 0	
 par = 1
 chapter_pointer = 1	
@@ -600,8 +718,27 @@ playmusic2 = True
 goch1 = True
 goch2 = True
 goch3 = True	
+musicfrom = 0.000
+nowplaying = ""
+				
+					
 
+pygame.mixer.music.load("cr_music.mp3")
+nowplaying = "cr_music.mp3"
+
+original_board(background_file)
+loading()
 #main loop
+
+original_board(background_file)
+pygame.display.flip()	
+pygame.mixer.music.load(nowplaying)
+pygame.mixer.music.play(-1, musicfrom)
+print(musicfrom)
+
+
+
+	
 while not gameExit:
 	clock.tick(60)
 	
@@ -614,6 +751,8 @@ while not gameExit:
 		if event.type == pygame.QUIT:
 			gameExit = True
 		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_ESCAPE:
+				saving()
 			if event.key == pygame.K_d:
 				x += 1
 			if event.key == pygame.K_a:

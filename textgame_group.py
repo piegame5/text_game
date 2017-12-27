@@ -642,15 +642,18 @@ def loading():
 		
 		#clock.tick(60)
 
-		screen.fill(white)
-		pygame.draw.rect(screen, black, [540, 50, 200, 70], 10)
-		message_to_screen("NEW GAME",black,590,70)
-		pygame.draw.rect(screen, black, [540, 150, 200, 70], 10)
-		message_to_screen("DATA1",black,610,170)
-		pygame.draw.rect(screen, black, [540, 250, 200, 70], 10)
-		message_to_screen("DATA2",black,610,270)
-		pygame.draw.rect(screen, black, [540, 350, 200, 70], 10)
-		message_to_screen("DATA3",black,610,370)
+		original_board(background_file)
+		pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
+		message_to_screen("NEW GAME",black,590,412.5)
+		
+		pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
+		message_to_screen("DATA1",black,610,492.5)
+		
+		pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
+		message_to_screen("DATA2",black,610,572.5)
+		
+		pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
+		message_to_screen("DATA3",black,610,652.5)
 		pygame.display.flip()	
 		
 		for event in pygame.event.get():
@@ -734,11 +737,11 @@ original_board(background_file)
 pygame.display.flip()	
 pygame.mixer.music.load(nowplaying)
 pygame.mixer.music.play(-1, musicfrom)
-print(musicfrom)
+print(musicfrom)	
 
 
 
-	
+
 while not gameExit:
 	clock.tick(60)
 	

@@ -23,8 +23,6 @@ gameExit = False
 
 clock = pygame.time.Clock()
 
-background_file = "sakura.jpg"
-background = pygame.image.load(background_file).convert()
 
 font = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
 
@@ -662,6 +660,8 @@ def loading():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True
+					change_background("aniback.jpg", "sakura.jpg", 20)
+					background_file = "sakura.jpg"
 				
 				if event.key == pygame.K_1:	
 					with open("saved1", "rb") as f:
@@ -678,6 +678,8 @@ def loading():
 					playmusic = data[9]
 					playmusic2 = data[10]
 					loaded = True
+					change_background("aniback.jpg", background_file, 20)
+					
 				if event.key == pygame.K_2:
 					with open("saved2", "rb") as f:
 						data = pickle.load(f)							
@@ -693,6 +695,8 @@ def loading():
 					playmusic = data[9]
 					playmusic2 = data[10]
 					loaded = True
+					change_background("aniback.jpg", background_file, 20)
+					
 				if event.key == pygame.K_3:
 					with open("saved3", "rb") as f:
 						data = pickle.load(f)									
@@ -708,6 +712,7 @@ def loading():
 					playmusic = data[9]
 					playmusic2 = data[10]
 					loaded = True
+					change_background("aniback.jpg", background_file, 20)
 	
 	
 
@@ -728,6 +733,9 @@ nowplaying = ""
 
 pygame.mixer.music.load("cr_music.mp3")
 nowplaying = "cr_music.mp3"
+
+background_file = "aniback.jpg"
+background = pygame.image.load(background_file).convert()
 
 original_board(background_file)
 loading()

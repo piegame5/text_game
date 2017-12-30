@@ -670,7 +670,8 @@ def loading():
 		
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
-				gameExit = True
+				pygame.quit()
+				quit()
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True

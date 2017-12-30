@@ -48,19 +48,19 @@ def show_text_name_for_4(textforname):
 	pygame.display.update()
 	
 def show_text_1(text1):
-	message_to_screen(text1,black,55,582)
+	message_to_screen(text1,black,55,580)
 	pygame.display.update()
 	
 def show_text_2(text2):
-	message_to_screen(text2,black,55,614)
+	message_to_screen(text2,black,55,612)
 	pygame.display.update()
 	
 def show_text_3(text3):
-	message_to_screen(text3,black,55,646)
+	message_to_screen(text3,black,55,644)
 	pygame.display.update()
 	
 def show_text_4(text4):
-	message_to_screen(text4,black,55,678)
+	message_to_screen(text4,black,55,676)
 	pygame.display.update()
 	
 def original_board(bg):

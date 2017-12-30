@@ -24,7 +24,8 @@ gameExit = False
 clock = pygame.time.Clock()
 
 
-font = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
+font = pygame.font.SysFont('mingliupmingliumingliuhkscs',20)
+font_for_title = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
 
 theblock_for_changing_background = 6
 	
@@ -32,20 +33,27 @@ def message_to_screen(msg,color,x,y):
 	screen_text = font.render(msg,True,color)
 	screen.blit(screen_text,[x,y])
 	
+	
+def message_to_screen_for_title(msg,color,x,y):
+	screen_text = font_for_title.render(msg,True,color)
+	screen.blit(screen_text,[x,y])
+	
+
+	
 def show_text_1(text1):
-	message_to_screen(text1,black,25,550)
+	message_to_screen(text1,black,55,585)
 	pygame.display.update()
 	
 def show_text_2(text2):
-	message_to_screen(text2,black,25,590)
+	message_to_screen(text2,black,55,617)
 	pygame.display.update()
 	
 def show_text_3(text3):
-	message_to_screen(text3,black,25,630)
+	message_to_screen(text3,black,55,649)
 	pygame.display.update()
 	
 def show_text_4(text4):
-	message_to_screen(text4,black,25,670)
+	message_to_screen(text4,black,55,681)
 	pygame.display.update()
 	
 def original_board(bg):
@@ -178,7 +186,7 @@ def chapter_1():
 			playmusic = False
 			
 		if x == 0:
-			original_board("sakura.jpg")
+			original_board("sakura_withtalk2.jpg")
 		elif x == 1:
 			show_text_1("曾幾何時，我們睜開眼不再做夢，夢只能隱晦的收藏？")
 		elif x == 2:
@@ -203,7 +211,7 @@ def chapter_1():
 		elif x == 11:
 			show_text_1("說得好像我有得選一樣。")
 		elif x == 12:
-			change_background("sakura.jpg", "aniback.jpg", 30)
+			change_background("sakura.jpg", "aniback_withtalk2.jpg", 30)
 			par += 1
 			x = 0
 	
@@ -227,7 +235,7 @@ def chapter_1():
 		elif x == 1:
 			show_text_1("開學典禮")
 		elif x == 2:
-			original_board("aniback.jpg")
+			original_board("aniback_withtalk2.jpg")
 			#pygame.mixer.Sound.play(crowd_sound)
 		elif x == 3:
 			show_text_1("校長：")
@@ -642,16 +650,16 @@ def loading():
 
 		original_board(background_file)
 		pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
-		message_to_screen("NEW GAME",black,590,412.5)
+		message_to_screen_for_title("NEW GAME",black,590,412.5)
 		
 		pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
-		message_to_screen("DATA1",black,610,492.5)
+		message_to_screen_for_title("DATA1",black,610,492.5)
 		
 		pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
-		message_to_screen("DATA2",black,610,572.5)
+		message_to_screen_for_title("DATA2",black,610,572.5)
 		
 		pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
-		message_to_screen("DATA3",black,610,652.5)
+		message_to_screen_for_title("DATA3",black,610,652.5)
 		pygame.display.flip()	
 		
 		for event in pygame.event.get():
@@ -660,8 +668,8 @@ def loading():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True
-					change_background("aniback.jpg", "sakura.jpg", 20)
-					background_file = "sakura.jpg"
+					change_background("aniback.jpg", "sakura_withtalk2.jpg", 20)
+					background_file = "sakura_withtalk2.jpg"
 				
 				if event.key == pygame.K_1:	
 					with open("saved1", "rb") as f:

@@ -38,22 +38,29 @@ def message_to_screen_for_title(msg,color,x,y):
 	screen_text = font_for_title.render(msg,True,color)
 	screen.blit(screen_text,[x,y])
 	
-
+def show_text_name_for_2(textforname):
+	message_to_screen_for_title(textforname,black,130,480)
+	pygame.display.update()
+	
+def show_text_name_for_4(textforname):
+	#姓和名中間要加3個block
+	message_to_screen_for_title(textforname,black,80,480)
+	pygame.display.update()
 	
 def show_text_1(text1):
-	message_to_screen(text1,black,55,585)
+	message_to_screen(text1,black,55,582)
 	pygame.display.update()
 	
 def show_text_2(text2):
-	message_to_screen(text2,black,55,617)
+	message_to_screen(text2,black,55,614)
 	pygame.display.update()
 	
 def show_text_3(text3):
-	message_to_screen(text3,black,55,649)
+	message_to_screen(text3,black,55,646)
 	pygame.display.update()
 	
 def show_text_4(text4):
-	message_to_screen(text4,black,55,681)
+	message_to_screen(text4,black,55,678)
 	pygame.display.update()
 	
 def original_board(bg):
@@ -186,7 +193,7 @@ def chapter_1():
 			playmusic = False
 			
 		if x == 0:
-			original_board("sakura_withtalk2.jpg")
+			original_board("校園+對話框.png")
 		elif x == 1:
 			show_text_1("曾幾何時，我們睜開眼不再做夢，夢只能隱晦的收藏？")
 		elif x == 2:
@@ -196,7 +203,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("大人是這樣說的，所以我這樣做。")
 		elif x == 5:
-			original_board("sakura.jpg")
+			original_board("校園+對話框.png")
 			x += 1
 		elif x == 6:
 			show_text_1("我們都被豢養，所以不需要飛翔。")
@@ -207,11 +214,11 @@ def chapter_1():
 		elif x == 9:
 			show_text_4("這是我的選擇嗎？")
 		elif x == 10:
-			original_board("sakura.jpg")
+			original_board("校園+對話框.png")
 		elif x == 11:
 			show_text_1("說得好像我有得選一樣。")
 		elif x == 12:
-			change_background("sakura.jpg", "aniback_withtalk2.jpg", 30)
+			change_background("校園+對話框.png", "校園+對話框.png", 30)
 			par += 1
 			x = 0
 	
@@ -219,7 +226,7 @@ def chapter_1():
 	
 
 	elif par == 2:
-		theblock_for_changing_background = 21 + 1
+		theblock_for_changing_background = 20 + 1
 		
 		if playmusic2 == True:
 			pygame.mixer.music.fadeout(1000)
@@ -231,60 +238,59 @@ def chapter_1():
 			
 			
 		if x == 0:
-			original_board("aniback.jpg")
+			original_board("校園+對話框.png")
 		elif x == 1:
 			show_text_1("開學典禮")
 		elif x == 2:
-			original_board("aniback_withtalk2.jpg")
+			original_board("校園+對話框+名字框.png")
 			#pygame.mixer.Sound.play(crowd_sound)
 		elif x == 3:
-			show_text_1("校長：")
+			show_text_name_for_2("校長")
 		elif x == 4:
-			show_text_2("歡迎來到__大學！")
+			show_text_1("歡迎來到__大學！")
 		elif x == 5:
-			show_text_3("在這令人興奮的時刻，我在台上看到的是一朵朵生機盎然的嫩芽，渴望著養分灌溉。")
+			show_text_2("在這令人興奮的時刻，我在台上看到的是一朵朵生機盎然的嫩芽，渴望著養分灌溉。")
 		elif x == 6:
-			show_text_4("本校是何其榮幸，能做為孕育優秀如你們的搖籃。")
+			show_text_3("本校是何其榮幸，能做為孕育優秀如你們的搖籃。")
 		elif x == 7:
-			original_board("aniback.jpg")
-			x += 1
+			show_text_4("從收到入學通知書的那一刻起，你們就代表了本校，和本校的未來。")
 		elif x == 8:
-			show_text_1("校長：")
+			original_board("校園+對話框+名字框.png")
+			x += 1
 		elif x == 9:
-			show_text_2("從收到入學通知書的那一刻起，你們就代表了本校，和本校的未來。")
+			show_text_name_for_2("校長")
+			show_text_1("今日你以__大為榮，他日__大將以你為榮，恭喜各位！")
 		elif x == 10:
-			show_text_3("今日你以__大為榮，他日__大將以你為榮，恭喜各位！")
+			original_board("校園+對話框+名字框.png")
+			x += 1
 		elif x == 11:
-			original_board("aniback.jpg")
-			x += 1
+			show_text_name_for_2("校長")
 		elif x == 12:
-			show_text_1("校長：")
+			show_text_1("我們來自不同的地方，有著不同的背景，一個人的際遇造就了現在的自己，而我們現在齊聚在這裡。")
 		elif x == 13:
-			show_text_2("我們來自不同的地方，有著不同的背景，一個人的際遇造就了現在的自己，而我們現在齊聚在這裡。")
+			show_text_2("你們想成為怎麼樣的人呢？我期待你們能在這階段結交好友，成就自己。")
 		elif x == 14:
-			show_text_3("你們想成為怎麼樣的人呢？我期待你們能在這階段結交好友，成就自己。")
+			show_text_3("你也許會困惑，你一定會遇到困難，但請記得你並不是一個人。")
 		elif x == 15:
-			show_text_4("你也許會困惑，你一定會遇到困難，但請記得你並不是一個人。")
-		elif x == 16:
-			original_board("aniback.jpg")
+			original_board("校園+對話框+名字框.png")
 			x += 1
+		elif x == 16:
+			show_text_name_for_2("校長")
 		elif x == 17:
-			show_text_1("校長：")
+			show_text_1("大學是各位一生至關重要的階段，一個人的選擇，編織了一段段不同的人生，串聯起一篇篇精彩的故事。")
 		elif x == 18:
-			show_text_2("大學是各位一生至關重要的階段，一個人的選擇，編織了一段段不同的人生，串聯起一篇篇精彩的故事。")
+			show_text_2("請尊重引導你們的師長，謹言慎行、服從校規。")
 		elif x == 19:
-			show_text_3("請尊重引導你們的師長，謹言慎行、服從校規。")
+			show_text_3("當你們面臨進行重大抉擇的時刻，請務必慎重，並為自己的選擇負起責任。")
 		elif x == 20:
-			show_text_4("當你們面臨進行重大抉擇的時刻，請務必慎重，並為自己的選擇負起責任。")
-		elif x == 21:
-			original_board("aniback.jpg")
+			change_background("校園+對話框+名字框.png", "校園+對話框.png", 30)
 			par += 1
 			x = 0
 			
 	elif par == 3:
 		theblock_for_changing_background = 5 + 1
 		if x == 0:
-			original_board("aniback.jpg")
+			original_board("校園+對話框.png")
 		elif x == 1:
 			show_text_1("所有校長都有的共通點，廢話特多，而且都是老爺爺。校長上台開講已經有20分鐘，感覺還要一陣子。")
 		elif x == 2:
@@ -294,7 +300,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("(開學典禮結束)")
 		elif x == 5:
-			change_background("aniback.jpg", "mizuumi.jpg", 30)
+			change_background("校園+對話框.png", "mizuumi.jpg", 30)
 			par += 1
 			x = 0
 			
@@ -668,8 +674,8 @@ def loading():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True
-					change_background("aniback.jpg", "sakura_withtalk2.jpg", 20)
-					background_file = "sakura_withtalk2.jpg"
+					change_background("aniback.jpg", "校園+對話框.png", 20)
+					background_file = "校園+對話框.png"
 				
 				if event.key == pygame.K_1:	
 					with open("saved1", "rb") as f:

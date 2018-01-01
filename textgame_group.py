@@ -9,17 +9,14 @@ pygame.font.get_fonts()
 red = (255,0,0)
 white = (255,255,255)
 black = (0,0,0)
+bright_black = (50, 50, 50)
 
 screen_width = 1280
 screen_height = 720
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-#screen = pygame.display.set_mode((1024,768))
 pygame.display.set_caption('testing game')
-
 pygame.display.update()
-
-gameExit = False
 
 clock = pygame.time.Clock()
 
@@ -646,7 +643,9 @@ def saving():
 	
 	
 def loading():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	
+	original_board(background_file)
 	
 	loaded = False	
 	while not loaded:
@@ -654,19 +653,30 @@ def loading():
 		
 		#clock.tick(60)
 
-		original_board(background_file)
-		pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
+		
+		#pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
 		message_to_screen_for_title("NEW GAME",black,590,412.5)
 		
-		pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
+		#pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
 		message_to_screen_for_title("DATA1",black,610,492.5)
 		
-		pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
+		#pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
 		message_to_screen_for_title("DATA2",black,610,572.5)
 		
-		pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
+		#pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
 		message_to_screen_for_title("DATA3",black,610,652.5)
-		pygame.display.flip()	
+		#pygame.display.flip()	
+		
+		if loaded == False:
+			button_for_intro(540, 400, 200, 50, 5, black, red, "NEW GAME")
+		if loaded == False:
+			button_for_intro(540, 480, 200, 50, 5, black, red, "DATA1")
+		if loaded == False:
+			button_for_intro(540, 560, 200, 50, 5, black, red, "DATA2")
+		if loaded == False:
+			button_for_intro(540, 640, 200, 50, 5, black, red, "DATA3")
+		
+		
 		
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -728,13 +738,84 @@ def loading():
 					playmusic2 = data[10]
 					loaded = True
 					change_background("aniback.jpg", background_file, 20)
+			
+
+def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
 	
+	mouse = pygame.mouse.get_pos()
+	click = pygame.mouse.get_pressed()
+	
+	if x_pos < mouse[0] < x_pos + w and y < mouse[1] < y + h:
+		pygame.draw.rect(screen, ac, [x_pos, y, w, h], line_thickness)
+		if click[0] == 1 and whattodo != None:
+			if whattodo == "NEW GAME":
+				loaded = True
+				change_background("aniback.jpg", "校園+對話框.png", 20)
+				background_file = "校園+對話框.png"
+			elif whattodo == "DATA1":
+				with open("saved1", "rb") as f:
+						data = pickle.load(f)						
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("aniback.jpg", background_file, 20)
+			elif whattodo == "DATA2":
+				with open("saved2", "rb") as f:
+						data = pickle.load(f)							
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("aniback.jpg", background_file, 20)
+			elif whattodo == "DATA3":
+				with open("saved3", "rb") as f:
+						data = pickle.load(f)									
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("aniback.jpg", background_file, 20)
+				
+	else:
+		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
+		
+	
+	pygame.display.flip()			
 	
 
 data = list()
+
+gameExit = False
 x = 0	
 par = 1
 chapter_pointer = 1	
+
 playmusic = True
 playmusic2 = True
 

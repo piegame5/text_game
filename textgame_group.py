@@ -10,6 +10,8 @@ red = (255,0,0)
 white = (255,255,255)
 black = (0,0,0)
 bright_black = (50, 50, 50)
+bright_gray = (209, 209, 209)
+dark_gray = (143,143,143)
 
 screen_width = 1280
 screen_height = 720
@@ -19,6 +21,9 @@ pygame.display.set_caption('testing game')
 pygame.display.update()
 
 clock = pygame.time.Clock()
+
+
+#sound1 = pygame.mixer.Sound("crtalk.mp3")
 
 
 font = pygame.font.SysFont('mingliupmingliumingliuhkscs',20)
@@ -61,7 +66,7 @@ def show_text_4(text4):
 	pygame.display.update()
 	
 def original_board(bg):
-	global background_file
+	global background_file, background
 	background_file = bg
 	background = pygame.image.load(background_file).convert()
 	screen.blit(background, (0, 0))
@@ -139,7 +144,7 @@ class CrossFade(pygame.sprite.Sprite):
 
 
 def change_background(now, new, changespeed):
-	global screen
+	global screen, background
 	
 	fade = CrossFade(screen)
 
@@ -177,6 +182,234 @@ def change_background(now, new, changespeed):
 		pygame.display.flip()
 
 
+
+def saving():
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
+	
+	saved = False
+	while not saved:
+		pygame.draw.rect(screen, black, [200, 50, 700, 70])
+		message_to_screen("WHICH FILE DO YOU WANT TO SAVE THE GAME?(1/2/3)", white, 210, 70)
+		pygame.display.flip()
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				gameExit = True
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_ESCAPE:
+					saved = True
+				if event.key == pygame.K_1:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved1", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+				if event.key == pygame.K_2:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved2", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+				if event.key == pygame.K_3:
+					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					with open("saved3", "wb") as f:
+						pickle.dump(data, f)
+						f.close()
+						saved = True
+	
+	gameExit = True			
+	
+	
+def loading():
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	
+	original_board(background_file)
+	
+	loaded = False	
+	while not loaded:
+		#global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file
+		
+		#clock.tick(60)
+
+		
+		#pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
+		message_to_screen_for_title("NEW GAME",black,590,412.5)
+		
+		#pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
+		message_to_screen_for_title("DATA1",black,610,492.5)
+		
+		#pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
+		message_to_screen_for_title("DATA2",black,610,572.5)
+		
+		#pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
+		message_to_screen_for_title("DATA3",black,610,652.5)
+		#pygame.display.flip()	
+		
+		if loaded == False:
+			button_for_intro(540, 400, 200, 50, 5, bright_gray, dark_gray, "NEW GAME")
+		if loaded == False:
+			button_for_intro(540, 480, 200, 50, 5, bright_gray, dark_gray, "DATA1")
+		if loaded == False:
+			button_for_intro(540, 560, 200, 50, 5, bright_gray, dark_gray, "DATA2")
+		if loaded == False:
+			button_for_intro(540, 640, 200, 50, 5, bright_gray, dark_gray, "DATA3")
+		
+		
+		
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_n:	
+					loaded = True
+					change_background("start.png", "校園+對話框.png", 20)
+					background_file = "校園+對話框.png"
+				
+				if event.key == pygame.K_1:	
+					with open("saved1", "rb") as f:
+						data = pickle.load(f)						
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+					change_background("start.png", background_file, 20)
+					
+				if event.key == pygame.K_2:
+					with open("saved2", "rb") as f:
+						data = pickle.load(f)							
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+					change_background("start.png", background_file, 20)
+					
+				if event.key == pygame.K_3:
+					with open("saved3", "rb") as f:
+						data = pickle.load(f)									
+					x = data[0]
+					par = data[1]
+					chapter_pointer = data[2]
+					musicfrom = data[3]
+					goch1 = data[4]
+					goch2 = data[5]
+					goch3 = data[6]
+					background_file = data[7]
+					nowplaying = data[8]
+					playmusic = data[9]
+					playmusic2 = data[10]
+					loaded = True
+					change_background("start.png", background_file, 20)
+			
+
+def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	
+	mouse = pygame.mouse.get_pos()
+	click = pygame.mouse.get_pressed()
+	
+	if x_pos < mouse[0] < x_pos + w and y < mouse[1] < y + h:
+		pygame.draw.rect(screen, ac, [x_pos, y, w, h], line_thickness)
+		if click[0] == 1 and whattodo != None:
+			if whattodo == "NEW GAME":
+				loaded = True
+				change_background("start.png", "校園+對話框.png", 20)
+				background_file = "校園+對話框.png"
+			elif whattodo == "DATA1":
+				with open("saved1", "rb") as f:
+						data = pickle.load(f)						
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("start.png", background_file, 20)
+			elif whattodo == "DATA2":
+				with open("saved2", "rb") as f:
+						data = pickle.load(f)							
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("start.png", background_file, 20)
+			elif whattodo == "DATA3":
+				with open("saved3", "rb") as f:
+						data = pickle.load(f)									
+				x = data[0]
+				par = data[1]
+				chapter_pointer = data[2]
+				musicfrom = data[3]
+				goch1 = data[4]
+				goch2 = data[5]
+				goch3 = data[6]
+				background_file = data[7]
+				nowplaying = data[8]
+				playmusic = data[9]
+				playmusic2 = data[10]
+				loaded = True
+				change_background("start.png", background_file, 20)
+				
+	else:
+		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
+		
+	
+	pygame.display.flip()	
+
+
+
+def button_for_chapter(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	
+	mouse = pygame.mouse.get_pos()
+	click = pygame.mouse.get_pressed()
+	
+	if x_pos < mouse[0] < x_pos + w and y < mouse[1] < y + h:
+		pygame.draw.rect(screen, ac, [x_pos, y, w, h], line_thickness)
+		if click[0] == 1 and whattodo != None:
+			if whattodo == "NEW GAME":
+				print("!")
+				
+	else:
+		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
+		
+	
+	pygame.display.flip()	
+	
+	
+	
 def chapter_1():
 	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom
 	
@@ -240,7 +473,7 @@ def chapter_1():
 			show_text_1("開學典禮")
 		elif x == 2:
 			original_board("校園+對話框+名字框.png")
-			#pygame.mixer.Sound.play(crowd_sound)
+			#pygame.mixer.Sound.play(sound1)
 		elif x == 3:
 			show_text_name_for_2("校長")
 		elif x == 4:
@@ -601,212 +834,9 @@ def chapter_3():
 			change_background("arc.jpg", "mizuumi.jpg", 30)
 			x = 0
 			goch3 = False
-
 			
-def saving():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
-	
-	saved = False
-	while not saved:
-		pygame.draw.rect(screen, black, [200, 50, 700, 70])
-		message_to_screen("WHICH FILE DO YOU WANT TO SAVE THE GAME?(1/2/3)", white, 210, 70)
-		pygame.display.flip()
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				gameExit = True
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_ESCAPE:
-					saved = True
-				if event.key == pygame.K_1:
-					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
-					with open("saved1", "wb") as f:
-						pickle.dump(data, f)
-						f.close()
-						saved = True
-				if event.key == pygame.K_2:
-					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
-					with open("saved2", "wb") as f:
-						pickle.dump(data, f)
-						f.close()
-						saved = True
-				if event.key == pygame.K_3:
-					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
-					with open("saved3", "wb") as f:
-						pickle.dump(data, f)
-						f.close()
-						saved = True
-	
-	gameExit = True			
-	
-	
-def loading():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
-	
-	original_board(background_file)
-	
-	loaded = False	
-	while not loaded:
-		#global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file
-		
-		#clock.tick(60)
-
-		
-		#pygame.draw.rect(screen, black, [540, 400, 200, 50], 5)
-		message_to_screen_for_title("NEW GAME",black,590,412.5)
-		
-		#pygame.draw.rect(screen, black, [540, 480, 200, 50], 5)
-		message_to_screen_for_title("DATA1",black,610,492.5)
-		
-		#pygame.draw.rect(screen, black, [540, 560, 200, 50], 5)
-		message_to_screen_for_title("DATA2",black,610,572.5)
-		
-		#pygame.draw.rect(screen, black, [540, 640, 200, 50], 5)
-		message_to_screen_for_title("DATA3",black,610,652.5)
-		#pygame.display.flip()	
-		
-		if loaded == False:
-			button_for_intro(540, 400, 200, 50, 5, black, red, "NEW GAME")
-		if loaded == False:
-			button_for_intro(540, 480, 200, 50, 5, black, red, "DATA1")
-		if loaded == False:
-			button_for_intro(540, 560, 200, 50, 5, black, red, "DATA2")
-		if loaded == False:
-			button_for_intro(540, 640, 200, 50, 5, black, red, "DATA3")
-		
-		
-		
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				pygame.quit()
-				quit()
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_n:	
-					loaded = True
-					change_background("aniback.jpg", "校園+對話框.png", 20)
-					background_file = "校園+對話框.png"
-				
-				if event.key == pygame.K_1:	
-					with open("saved1", "rb") as f:
-						data = pickle.load(f)						
-					x = data[0]
-					par = data[1]
-					chapter_pointer = data[2]
-					musicfrom = data[3]
-					goch1 = data[4]
-					goch2 = data[5]
-					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
-					loaded = True
-					change_background("aniback.jpg", background_file, 20)
-					
-				if event.key == pygame.K_2:
-					with open("saved2", "rb") as f:
-						data = pickle.load(f)							
-					x = data[0]
-					par = data[1]
-					chapter_pointer = data[2]
-					musicfrom = data[3]
-					goch1 = data[4]
-					goch2 = data[5]
-					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
-					loaded = True
-					change_background("aniback.jpg", background_file, 20)
-					
-				if event.key == pygame.K_3:
-					with open("saved3", "rb") as f:
-						data = pickle.load(f)									
-					x = data[0]
-					par = data[1]
-					chapter_pointer = data[2]
-					musicfrom = data[3]
-					goch1 = data[4]
-					goch2 = data[5]
-					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
-					loaded = True
-					change_background("aniback.jpg", background_file, 20)
 			
 
-def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
-	
-	mouse = pygame.mouse.get_pos()
-	click = pygame.mouse.get_pressed()
-	
-	if x_pos < mouse[0] < x_pos + w and y < mouse[1] < y + h:
-		pygame.draw.rect(screen, ac, [x_pos, y, w, h], line_thickness)
-		if click[0] == 1 and whattodo != None:
-			if whattodo == "NEW GAME":
-				loaded = True
-				change_background("aniback.jpg", "校園+對話框.png", 20)
-				background_file = "校園+對話框.png"
-			elif whattodo == "DATA1":
-				with open("saved1", "rb") as f:
-						data = pickle.load(f)						
-				x = data[0]
-				par = data[1]
-				chapter_pointer = data[2]
-				musicfrom = data[3]
-				goch1 = data[4]
-				goch2 = data[5]
-				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
-				loaded = True
-				change_background("aniback.jpg", background_file, 20)
-			elif whattodo == "DATA2":
-				with open("saved2", "rb") as f:
-						data = pickle.load(f)							
-				x = data[0]
-				par = data[1]
-				chapter_pointer = data[2]
-				musicfrom = data[3]
-				goch1 = data[4]
-				goch2 = data[5]
-				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
-				loaded = True
-				change_background("aniback.jpg", background_file, 20)
-			elif whattodo == "DATA3":
-				with open("saved3", "rb") as f:
-						data = pickle.load(f)									
-				x = data[0]
-				par = data[1]
-				chapter_pointer = data[2]
-				musicfrom = data[3]
-				goch1 = data[4]
-				goch2 = data[5]
-				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
-				loaded = True
-				change_background("aniback.jpg", background_file, 20)
-				
-	else:
-		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
-		
-	
-	pygame.display.flip()			
 	
 
 data = list()
@@ -825,12 +855,15 @@ goch3 = True
 musicfrom = 0.000
 nowplaying = ""
 				
-					
+
+background_file = "blackintro.png"
+original_board(background_file)
+change_background("blackintro.png", "start.png", 20)				
 
 pygame.mixer.music.load("cr_music.mp3")
 nowplaying = "cr_music.mp3"
 
-background_file = "aniback.jpg"
+background_file = "start.png"
 background = pygame.image.load(background_file).convert()
 
 original_board(background_file)

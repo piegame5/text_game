@@ -836,6 +836,8 @@ def chapter_1():
 			button_for_chapter("兩位關係真不錯，我在這都沒認識的人哈哈",100, 580, 800, 30, 2, dark_gray, black, whattodo = "兩位關係真不錯，我在這都沒認識的人哈哈")
 			button_for_chapter("真假，為什麼不用客氣啊，客氣不好嗎==", 100, 620, 800, 30, 2, dark_gray, black, whattodo = "真假，為什麼不用客氣啊，客氣不好嗎==")
 			button_for_chapter("那他講幹話的時候我嗆爆妳可以嗎", 100, 660, 800, 30, 2, dark_gray, black, whattodo = "那他講幹話的時候我嗆爆妳可以嗎")
+		if x > 13:
+			x = 13
 		if z == 1:
 			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+好朋友和女主+對話框+名字框.png", 30)
 			par += 1

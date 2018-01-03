@@ -22,8 +22,7 @@ pygame.display.update()
 
 clock = pygame.time.Clock()
 
-
-#sound1 = pygame.mixer.Sound("crtalk.mp3")
+#crowdtalk_sound = pygame.mixer.Sound('talk_cut.wav')
 
 
 font = pygame.font.SysFont('mingliupmingliumingliuhkscs',20)
@@ -419,6 +418,10 @@ def chapter_1():
 		theblock_for_changing_background = 12 + 1
 		
 		if playmusic == True:
+			pygame.mixer.music.fadeout(1000)
+			pygame.mixer.music.load("cr_music.mp3")
+			musicfrom = 0
+			nowplaying = "cr_music.mp3"
 			pygame.mixer.music.play(-1)	
 			playmusic = False
 			
@@ -473,7 +476,7 @@ def chapter_1():
 			show_text_1("開學典禮")
 		elif x == 2:
 			original_board("校園+對話框+名字框.png")
-			#pygame.mixer.Sound.play(sound1)
+			#pygame.mixer.Sound.play(crowdtalk_sound)
 		elif x == 3:
 			show_text_name_for_2("校長")
 		elif x == 4:
@@ -856,12 +859,60 @@ musicfrom = 0.000
 nowplaying = ""
 				
 
+
+
+pygame.mixer.music.load("sinners.wav")
+nowplaying = "sinners.wav"
+
+pygame.mixer.music.load(nowplaying)
+pygame.mixer.music.play(-1, musicfrom)
+
+
+
+intro_delay_time = 600
+intro_change_speed = 48
+
+original_board("blackintro.png")
+change_background("blackintro.png", "sakura.jpg", 20)
+background_file = "sakura.jpg"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
+
+background_file = "aniback.jpg"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
+
+background_file = "mizuumi.jpg"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
+
+background_file = "clock.jpg"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("clock.jpg", "arc.jpg", intro_change_speed)
+
+background_file = "arc.jpg"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("arc.jpg", "校園.png", intro_change_speed)
+
+background_file = "校園.png"
+original_board(background_file)
+pygame.time.delay(intro_delay_time)
+original_board(background_file)
+change_background("校園.png", "blackintro.png", 40)
+
 background_file = "blackintro.png"
 original_board(background_file)
-change_background("blackintro.png", "start.png", 20)				
-
-pygame.mixer.music.load("cr_music.mp3")
-nowplaying = "cr_music.mp3"
+change_background("blackintro.png", "start.png", 22)				
 
 background_file = "start.png"
 background = pygame.image.load(background_file).convert()
@@ -871,9 +922,8 @@ loading()
 #main loop
 
 original_board(background_file)
-pygame.display.flip()	
-pygame.mixer.music.load(nowplaying)
-pygame.mixer.music.play(-1, musicfrom)
+pygame.display.flip()
+
 print(musicfrom)	
 
 

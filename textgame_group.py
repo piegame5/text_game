@@ -27,6 +27,7 @@ clock = pygame.time.Clock()
 
 font = pygame.font.SysFont('mingliupmingliumingliuhkscs',20)
 font_for_title = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
+#font_for_opening = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
 
 theblock_for_changing_background = 6
 	
@@ -264,8 +265,8 @@ def loading():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True
-					change_background("start.png", "校園+對話框.png", 20)
-					background_file = "校園+對話框.png"
+					change_background("start.png", "blackopening.png", 20)
+					background_file = "blackopening.png"
 				
 				if event.key == pygame.K_1:	
 					with open("saved1", "rb") as f:
@@ -330,8 +331,8 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 		if click[0] == 1 and whattodo != None:
 			if whattodo == "NEW GAME":
 				loaded = True
-				change_background("start.png", "校園+對話框.png", 20)
-				background_file = "校園+對話框.png"
+				change_background("start.png", "blackopening.png", 20)
+				background_file = "blackopening.png"
 			elif whattodo == "DATA1":
 				with open("saved1", "rb") as f:
 						data = pickle.load(f)						
@@ -389,17 +390,26 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 
 
 
-def button_for_chapter(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded, choice, z
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
 	
+	message_to_screen(msg, black, x_pos + 20, y + 5)
+	
 	if x_pos < mouse[0] < x_pos + w and y < mouse[1] < y + h:
 		pygame.draw.rect(screen, ac, [x_pos, y, w, h], line_thickness)
 		if click[0] == 1 and whattodo != None:
-			if whattodo == "NEW GAME":
-				print("!")
+			if whattodo == "兩位關係真不錯，我在這都沒認識的人哈哈":
+				choice = 1
+				z = 1
+			elif whattodo == "真假，為什麼不用客氣啊，客氣不好嗎==":
+				choice = 2
+				z = 1
+			elif whattodo == "那他講幹話的時候我嗆爆妳可以嗎":
+				choice = 3
+				z = 1
 				
 	else:
 		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
@@ -410,7 +420,7 @@ def button_for_chapter(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 	
 	
 def chapter_1():
-	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom
+	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice
 	
 	
 	
@@ -426,7 +436,7 @@ def chapter_1():
 			playmusic = False
 			
 		if x == 0:
-			original_board("校園+對話框.png")
+			original_board("blackopening.png")
 		elif x == 1:
 			show_text_1("曾幾何時，我們睜開眼不再做夢，夢只能隱晦的收藏？")
 		elif x == 2:
@@ -436,7 +446,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("大人是這樣說的，所以我這樣做。")
 		elif x == 5:
-			original_board("校園+對話框.png")
+			original_board("blackopening.png")
 			x += 1
 		elif x == 6:
 			show_text_1("我們都被豢養，所以不需要飛翔。")
@@ -447,11 +457,11 @@ def chapter_1():
 		elif x == 9:
 			show_text_4("這是我的選擇嗎？")
 		elif x == 10:
-			original_board("校園+對話框.png")
+			original_board("blackopening.png")
 		elif x == 11:
 			show_text_1("說得好像我有得選一樣。")
 		elif x == 12:
-			change_background("校園+對話框.png", "校園+對話框.png", 30)
+			change_background("blackopening.png", "校園+對話框.png", 30)
 			par += 1
 			x = 0
 	
@@ -480,7 +490,7 @@ def chapter_1():
 		elif x == 3:
 			show_text_name_for_2("校長")
 		elif x == 4:
-			show_text_1("歡迎來到__大學！")
+			show_text_1("歡迎來到伯勞大學！")
 		elif x == 5:
 			show_text_2("在這令人興奮的時刻，我在台上看到的是一朵朵生機盎然的嫩芽，渴望著養分灌溉。")
 		elif x == 6:
@@ -533,7 +543,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("(開學典禮結束)")
 		elif x == 5:
-			change_background("校園+對話框.png", "mizuumi.jpg", 30)
+			change_background("校園+對話框.png", "教室+對話框.png", 30)
 			par += 1
 			x = 0
 			
@@ -542,21 +552,21 @@ def chapter_1():
 	elif par == 4:
 		theblock_for_changing_background = 7 + 1
 		if x == 0:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 		elif x == 1:
 			show_text_1("（第一堂課）")
 		elif x == 2:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 		elif x == 3:
-			show_text_1("第一堂課，周圍坐的系上同學大約也有上百位...我們真算是一個大系，想到要記起這上百人的名字就覺得麻煩。")
+			show_text_1("第一堂課，周圍坐的系上同學大約也有上百位...我們真算是一個大系，想到要記起這上百人的名字，就覺得寧願去背英文單字。。")
 		elif x == 4:
 			show_text_2("教室是個階梯式講堂，高中時也只有在大一點的特殊教室或補習班才看的到這種形式。")
 		elif x == 5:
 			show_text_3("雖然人數眾多，教室內的氣氛大致是低迷的，只有少數互相認識的人低聲交談。")
 		elif x == 6:
-			show_text_4("這時多少會覺得要是身旁有個認識的人就好了，有誰想得到此時此刻我會坐在這裡呢?")
+			show_text_4("這時多少會覺得要是身旁有個認識的人就好了…我亂講的，被認出來多尷尬==")
 		elif x == 7:
-			original_board("mizuumi.jpg")
+			change_background("教室+對話框.png", "教室+對話框+名字框.png", 30)
 			par += 1
 			x = 0
 			
@@ -564,88 +574,101 @@ def chapter_1():
 	elif par == 5:
 		theblock_for_changing_background = 10 + 1
 		if x == 0:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框+名字框.png")
 		elif x == 1:
-			show_text_1("教授：「同學們請安靜坐好，開始上課囉」")
+			show_text_name_for_2("教授")
+			show_text_1("同學們請安靜坐好，開始上課囉")
 		elif x == 2:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 		elif x == 3:
-			show_text_1("看起來年約五六十的教授走進教室，身材有些臃腫。")
+			show_text_1("拈著陰柔的聲線，看起來年約五六十的教授走進教室，身材有些臃腫。")
 		elif x == 4:
 			show_text_2("偏圓的臉，黝黑的肌膚和所剩不多的白髮訴說著歲月，但並不影響他的意氣風發。")
 		elif x == 5:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框+名字框.png")
 			x += 1
 		elif x == 6:
-			show_text_1("教授：")
+			show_text_name_for_2("教授")
 		elif x == 7:
-			show_text_2("還是不免俗地說一句歡迎各位來到__大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
+			show_text_1("還是不免俗地說一句歡迎各位來到伯勞大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
 		elif x == 8:
-			show_text_3("但我也要勸各位盡早收起浮躁，好好努力才是真的。")
+			show_text_2("但也要勸各位盡早收起浮躁，好好努力才是真的。")
 		elif x == 9:
-			show_text_4("教授在大學時代，大家都在辦活動在玩的時候，我總是一個人在圖書館．．．．．．")
+			show_text_3("教授在大學時代，大家都在辦活動在玩的時候，我總是一個人在圖書館．．．．．．")
 		elif x == 10:
-			original_board("mizuumi.jpg")
+			change_background("教室+對話框+名字框.png", "教室+對話框.png", 30)
 			par += 1
 			x = 0
 			
 			
 	elif par == 6:
-		theblock_for_changing_background = 7 + 1
+		theblock_for_changing_background = 8 + 1
 		if x == 0:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 		elif x == 1:
 			show_text_1("教授開始說起當年他是如何寒窗十年無人問、取得今日規模的成就、羨煞多少浮世眾生．．．．．．")
 		elif x == 2:
 			show_text_2("又扯一些什麼沒實力就等淘汰啊、什麼人脈很重要啊、眼光放遠才能獲得最大利益等等等等。")
 		elif x == 3:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 			x += 1
 		elif x == 4:
 			show_text_1("天啊，管院的人都這樣嗎？")
 		elif x == 5:
 			show_text_2("我以後會變得和他一樣嗎？")
 		elif x == 6:
-			show_text_3("現在回頭太遲了嗎？")
+			show_text_3("不好吧==")
 		elif x == 7:
-			original_board("mizuumi.jpg")
+			show_text_4("現在回頭太遲了嗎？")
+		elif x == 8:
+			change_background("教室+對話框.png", "教室+對話框+名字框.png", 30)
 			par += 1
 			x = 0
 			
 	elif par == 7:
-		theblock_for_changing_background = 9 + 1
+		theblock_for_changing_background = 4 + 1
 		if x == 0:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框+名字框.png")
+			x += 1
 		elif x == 1:
-			show_text_1("教授：")
+			show_text_name_for_2("教授")
 		elif x == 2:
-			show_text_2("．．．．．．以後進了職場，一個重要的能力就是和人群說話，那就是我們今天要做的事啦。")
+			show_text_1("．．．．．．以後進了職場，一個重要的能力就是和人群說話，那就是我們今天要做的事啦。")
 		elif x == 3:
-			show_text_3("請大家上台用一分鐘介紹你自己，下次再開始上正課。")
+			show_text_2("請大家上台用一分鐘介紹你自己，下次再開始上正課。")
 		elif x == 4:
-			original_board("mizuumi.jpg")
-		elif x == 5:
+			change_background("教室+對話框+名字框.png", "教室+對話框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 8:
+		theblock_for_changing_background = 5 + 1
+		if x == 0:
+			original_board("教室+對話框.png")
+			x += 1
+		elif x == 1:
 			show_text_1("教授拿出事先護貝好的名牌，讓大家能看清楚接下來上台的人的名字。")
-		elif x == 6:
+		elif x == 2:
 			show_text_2("第一堂課就是上百人一個一個自我介紹，")
-		elif x == 7:
+		elif x == 3:
 			show_text_3("這種方式雖然對認識人沒什麼幫助，但似乎也沒有更好的方法了。")
-		elif x == 8:
+		elif x == 4:
 			show_text_4("一開始大家都還試著掰出一分鐘的長度，後來漸漸地大家就開始無視這規則了......而我也是這麼打算的。")
-		elif x == 9:
-			original_board("mizuumi.jpg")
+		elif x == 5:
+			change_background("教室+對話框.png", "教室+對話框+名字框.png", 30)
 			par += 1
 			x = 0
 	
 	
-	elif par == 8:
-		theblock_for_changing_background = 38 + 1
+	elif par == 9:
+		theblock_for_changing_background = 6 + 1
 		if x == 0:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框+名字框.png")
 		elif x == 1:
-			show_text_1("「我叫__，來自__，希望能和大家好好相處啦，請多指教」")
+			show_text_name_for_4("御影   翔平")
+			show_text_1("我叫御影翔平，希望能和大家好好相處，請多指教。")
 		elif x == 2:
-			original_board("mizuumi.jpg")
+			original_board("教室+對話框.png")
 		elif x == 3:
 			show_text_1("台下響起些微意思性的掌聲送我回到座位，")
 		elif x == 4:
@@ -653,88 +676,251 @@ def chapter_1():
 		elif x == 5:
 			show_text_3("後方傳來一句男聲。")
 		elif x == 6:
-			original_board("mizuumi.jpg")
-			x += 1
-		elif x == 7:
-			show_text_1("？？：「這堂課還真奇怪，對吧？」")
-		elif x == 8:
-			original_board("mizuumi.jpg")
-		elif x == 9:
+			change_background("教室+對話框.png", "教室+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+	
+	elif par == 10:
+		theblock_for_changing_background = 8 + 1
+		if x == 0:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_2("??")
+			show_text_1("這堂課還真奇怪，對吧？")
+		elif x == 2:
+			original_board("教室+好朋友+對話框.png")
+		elif x == 3:
 			show_text_1("回頭一看，一個帶著粗框眼鏡的帥氣男孩笑咪咪地看著我。")
-		elif x == 10:
-			original_board("mizuumi.jpg")
-		elif x == 11:
-			show_text_1("好朋友1：")
-			show_text_2("「我叫___，___(主角名)，請多指教。」")
-		elif x == 12:
-			original_board("mizuumi.jpg")
-		elif x == 13:
-			show_text_1("「喔喔嗨，很高興認識你。」")
-			show_text_2("我回答道")
-		elif x == 14:
-			original_board("mizuumi.jpg")
-			x += 1
-		elif x == 15:
-			show_text_1("＿＿看起來就是那種幽默開朗，大家看到都會喜歡的那種人。")
-		elif x == 16:
-			show_text_2("可能只是想找個人聊天吧...")
-		elif x == 17:
-			original_board("mizuumi.jpg")
-		elif x == 18:
-			show_text_1("好朋友1：")
-			show_text_2("「這個學校真的很棒，聽說畢業生的就業率是完美的100%，而且畢業生全都進入了很不錯的大公司耶！」")
-		elif x == 19:
-			original_board("mizuumi.jpg")
-		elif x == 20:
-			show_text_1("我：")
-			show_text_2("「這樣啊，我想大家都是一樣看上這點的吧」")
-		elif x == 21:
-			original_board("mizuumi.jpg")
-		elif x == 22:
-			show_text_1("那我是為了什麼進這間學校的呢？")
-		elif x == 23:
-			original_board("mizuumi.jpg")
-		elif x == 24:
-			show_text_1("好朋友1：")
-			show_text_2("「對阿，大家都希望能順利畢業並成功就業呢。對了你看，現在在台上的是我朋友」")
-		elif x == 25:
-			original_board("mizuumi.jpg")
-		elif x == 26:
-			show_text_1("現在在台上的是一個女生。")
-		elif x == 27:
-			show_text_2("說話有點小聲，卻不是怯懦的那種，反倒給人一種無法忽視她存在的感覺。")
-		elif x == 28:
-			show_text_3("介紹完後，她朝我們這邊走過來。")
-		elif x == 29:
-			original_board("mizuumi.jpg")
-		elif x == 30:
-			show_text_1("好朋友1：")
-			show_text_2("「辛苦囉，這位是____(主角名)，一起交個朋友吧」")
-		elif x == 31:
-			original_board("mizuumi.jpg")
-			x += 1
-		elif x == 32:
-			show_text_1("我：")
-			show_text_2("「哈囉哈囉」")
-		elif x == 33:
-			original_board("mizuumi.jpg")
-			x += 1
-		elif x == 34:
-			show_text_1("女主角：")
-			show_text_2("「嗨，____(好朋友1)應該沒太騷擾你吧」")
-		elif x == 35:
-			original_board("mizuumi.jpg")
-		elif x == 36:
-			show_text_1("簡單聊了幾句，對話也沒進行下去了。")
-			show_text_2("姑且算是認識了兩位同學吧，超乎預期的多呢。")
-		elif x == 37:
-			show_text_4("（第一堂課結束）")
-		elif x == 38:
-			change_background("mizuumi.jpg", "clock.jpg", 30)
+		elif x == 4:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 5:
+			show_text_name_for_2("??")
+			show_text_2("我叫神谷智則，御影同學，請多指教。")
+		elif x == 6:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 7:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("喔喔嗨，很高興認識你。")
+		elif x == 8:
+			change_background("教室+好朋友+對話框+名字框.png", "教室+對話框.png", 30)
 			par += 1
 			x = 0
 			
-	elif par == 9:
+			
+	elif par == 11:
+		theblock_for_changing_background = 3 + 1
+		if x == 0:
+			original_board("教室+對話框.png")
+		elif x == 1:
+			show_text_1("智則他看起來就是那種幽默開朗，大家看到都會喜歡的那種人。")
+		elif x == 2:
+			show_text_2("可能只是想找個人聊天吧...")
+		elif x == 3:
+			change_background("教室+對話框.png", "教室+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+			
+			
+	elif par == 12:
+		theblock_for_changing_background = 21 + 1
+		if x == 0:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("聽我學長說，這教授是我們的鎮系之寶，他有一大堆傳奇故事，讓同學們一屆一屆的傳頌下去。")
+		elif x == 2:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("是喔，像是什麼？")
+		elif x == 4:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 5:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("像是人人看到他都得堆滿笑臉的和他打招呼，從前不和他講話的系花看到他就會給個大大的擁抱之類的。")
+		elif x == 6:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 7:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("太有錢了吧==，有地位就是任性耶，是不是該出門找工作了啊？")
+		elif x == 8:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 9:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("他每屆會選某些「可愛」的學生給予特別的「照顧」，")
+		elif x == 10:
+			show_text_2("聽說他還單獨請學姐吃過冰淇淋呢，那可是人人稱羨的待遇喔！")
+		elif x == 11:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 12:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("天啊好羨慕喔，那教授會不會傳裸照啊？好想看喔==")
+		elif x == 13:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 14:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("什麼鬼哈哈哈，")
+		elif x == 15:
+			show_text_2("，聽說這學校畢業生的就業率是完美的100%，而且他們全都進入了很不錯的大公司呢")
+		elif x == 16:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 17:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("這樣啊，我想大家都是一樣看上這點拼命考進來的吧。")
+		elif x == 18:
+			original_board("教室+好朋友+對話框+名字框.png")
+		elif x == 19:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("對阿，大家都希望能順利畢業並成功就業。")
+		elif x == 20:
+			show_text_2("對了你看，現在在台上的是我朋友。")
+		elif x == 21:
+			change_background("教室+好朋友+對話框+名字框.png", "教室+女主+對話框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 13:
+		theblock_for_changing_background = 4 + 1
+		if x == 0:
+			original_board("教室+女主+對話框.png")
+		elif x == 1:
+			show_text_1("現在在台上的女生，名字叫榊原凜。")
+		elif x == 2:
+			show_text_2("說話有點小聲，卻是堅定的那種，給人一種無法忽視的感覺。")
+		elif x == 3:
+			show_text_3("介紹完後，她朝我們這邊走過來。")
+		elif x == 4:
+			change_background("教室+女主+對話框.png", "教室+好朋友和女主+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 14:		
+		theblock_for_changing_background = 14 + 1
+		if x == 0:
+			original_board("教室+好朋友和女主+對話框+名字框.png")	
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("辛苦囉，這位是御影翔平，交個朋友吧～")
+		elif x == 2:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("哈囉哈囉~")
+		elif x == 4:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("嗨，智則應該沒太騷擾你吧")
+		elif x == 6:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 7:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("我們高中同班，算老友了吧。她現在單身，目標好像是一學期交一個男友的樣子。")
+		elif x == 8:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 9:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("跟你考上同系真衰哈哈，你不要玩到被當再來找我求救就好。")
+		elif x == 10:
+			show_text_2("翔平，要是以後智則跟你講什麼幹話你就嗆爆他不用客氣xD")
+		elif x == 11:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 12:
+			show_text_name_for_4("御影   翔平")
+		elif x == 13:
+			button_for_chapter("兩位關係真不錯，我在這都沒認識的人哈哈",100, 580, 800, 30, 2, dark_gray, black, whattodo = "兩位關係真不錯，我在這都沒認識的人哈哈")
+			button_for_chapter("真假，為什麼不用客氣啊，客氣不好嗎==", 100, 620, 800, 30, 2, dark_gray, black, whattodo = "真假，為什麼不用客氣啊，客氣不好嗎==")
+			button_for_chapter("那他講幹話的時候我嗆爆妳可以嗎", 100, 660, 800, 30, 2, dark_gray, black, whattodo = "那他講幹話的時候我嗆爆妳可以嗎")
+		if z == 1:
+			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+好朋友和女主+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 15 and choice == 1:
+		theblock_for_changing_background = 4 + 1
+		if x == 0:
+			original_board("教室+好朋友和女主+對話框+名字框.png")	
+		elif x == 1:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("沒事，以後有事可以找我們，沒事也可以。")
+		elif x == 2:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 3:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("我覺得不行。")
+		elif x == 4:
+			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+對話框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 15 and choice == 2:
+		theblock_for_changing_background = 8 + 1
+		if x == 0:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("對齁，有道理欸！你邏輯是不是還不錯啊==")
+		elif x == 2:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("還好啦，就if跟else而已啊~")
+		elif x == 4:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 5:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("對啊，這樣就停修也太玻璃了吧")
+		elif x == 6:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 7:
+			show_text_name_for_2("三人")
+			show_text_1("哈哈哈哈哈哈哈哈哈哈")
+		elif x == 8:
+			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+對話框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 15 and choice == 3:
+		theblock_for_changing_background = 4 + 1
+		if x == 0:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("好問題欸，等，我想一下==")
+		elif x == 2:
+			original_board("教室+好朋友和女主+對話框+名字框.png")
+		elif x == 3:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("哇塞，你把在場所有人都嗆過一遍也沒問題吧？")
+		elif x == 4:
+			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+對話框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 16:
+		theblock_for_changing_background = 3 + 1
+		if x == 0:
+			original_board("教室+對話框.png")
+		elif x == 1:
+			show_text_1("簡單聊了幾句...")
+			show_text_2("姑且算是認識了兩位同學吧，超乎預期的多呢。")
+		elif x == 2:
+			show_text_4("（第一堂課結束）")
+		elif x == 3:
+			change_background("教室+對話框.png", "arc.jpg", 30)
+			par += 1
+			x = 0
+			
+	elif par == 17:
 		theblock_for_changing_background = 6 + 1	
 		if x == 0:
 			original_board("clock.jpg")
@@ -753,13 +939,13 @@ def chapter_1():
 			par += 1
 			x = 0
 			
-	elif par == 10:
+	elif par == 18:
 		theblock_for_changing_background = 6 + 1	
 		if x == 0:
 			original_board("arc.jpg")
 		elif x == 1:
-			show_text_1("好朋友1：")
-			show_text_2("「對了，你等會兒有空嗎？要不要一起出去玩玩？我住在這個附近我帶你去認識這個地方」")
+			show_text_name_for_4("神谷   智則")
+			show_text_1("「對了，你等會兒有空嗎？要不要一起出去玩玩？我住在這個附近我帶你去認識這個地方」")
 		elif x == 2:
 			original_board("arc.jpg")
 			x += 1
@@ -848,6 +1034,9 @@ gameExit = False
 x = 0	
 par = 1
 chapter_pointer = 1	
+
+choice = 0
+z = 0
 
 playmusic = True
 playmusic2 = True

@@ -1569,7 +1569,54 @@ def chapter_8():
 			x = 0
 			goch8 = False
 		
-			
+
+
+		
+def opening():
+	intro_delay_time = 600
+	intro_change_speed = 48
+
+	original_board("blackintro.png")
+	change_background("blackintro.png", "sakura.jpg", 20)
+	background_file = "sakura.jpg"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
+
+	background_file = "aniback.jpg"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
+
+	background_file = "mizuumi.jpg"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
+
+	background_file = "clock.jpg"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("clock.jpg", "arc.jpg", intro_change_speed)
+
+	background_file = "arc.jpg"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("arc.jpg", "校園+對話框.png", intro_change_speed)
+
+	background_file = "校園+對話框.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("校園+對話框.png", "blackintro.png", 40)
+
+	background_file = "blackintro.png"
+	original_board(background_file)
+	change_background("blackintro.png", "start.png", 22)
 		
 		
 
@@ -1605,52 +1652,9 @@ nowplaying = "sinners.wav"
 pygame.mixer.music.load(nowplaying)
 pygame.mixer.music.play(-1, musicfrom)
 
-
-
-intro_delay_time = 600
-intro_change_speed = 48
-
-original_board("blackintro.png")
-change_background("blackintro.png", "sakura.jpg", 20)
-background_file = "sakura.jpg"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-background_file = "aniback.jpg"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-background_file = "mizuumi.jpg"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-background_file = "clock.jpg"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-background_file = "arc.jpg"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("arc.jpg", "校園+對話框.png", intro_change_speed)
-
-background_file = "校園+對話框.png"
-original_board(background_file)
-pygame.time.delay(intro_delay_time)
-original_board(background_file)
-change_background("校園+對話框.png", "blackintro.png", 40)
-
-background_file = "blackintro.png"
-original_board(background_file)
-change_background("blackintro.png", "start.png", 22)				
+#game opening
+opening()
+				
 
 background_file = "start.png"
 background = pygame.image.load(background_file).convert()

@@ -410,6 +410,13 @@ def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = N
 			elif whattodo == "那他講幹話的時候我嗆爆妳可以嗎":
 				choice = 3
 				z = 1
+			
+			elif whattodo == "剛好沒甚麼事，就出去逛逛吧":
+				choice = 1
+				z = 1
+			elif whattodo == "在宿舍讀書好了":
+				choice = 2
+				z = 1
 				
 	else:
 		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
@@ -420,7 +427,7 @@ def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = N
 	
 	
 def chapter_1():
-	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice
+	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
 	
 	
 	
@@ -436,7 +443,7 @@ def chapter_1():
 			playmusic = False
 			
 		if x == 0:
-			original_board("blackopening.png")
+			original_board("黒+對話框.png")
 		elif x == 1:
 			show_text_1("曾幾何時，我們睜開眼不再做夢，夢只能隱晦的收藏？")
 		elif x == 2:
@@ -446,7 +453,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("大人是這樣說的，所以我這樣做。")
 		elif x == 5:
-			original_board("blackopening.png")
+			original_board("黒+對話框.png")
 			x += 1
 		elif x == 6:
 			show_text_1("我們都被豢養，所以不需要飛翔。")
@@ -457,11 +464,11 @@ def chapter_1():
 		elif x == 9:
 			show_text_4("這是我的選擇嗎？")
 		elif x == 10:
-			original_board("blackopening.png")
+			original_board("黒+對話框.png")
 		elif x == 11:
 			show_text_1("說得好像我有得選一樣。")
 		elif x == 12:
-			change_background("blackopening.png", "校園+對話框.png", 30)
+			change_background("黒+對話框.png", "校園+對話框.png", 30)
 			par += 1
 			x = 0
 	
@@ -526,7 +533,7 @@ def chapter_1():
 		elif x == 19:
 			show_text_3("當你們面臨進行重大抉擇的時刻，請務必慎重，並為自己的選擇負起責任。")
 		elif x == 20:
-			change_background("校園+對話框+名字框.png", "校園+對話框.png", 30)
+			original_board("校園+對話框.png")
 			par += 1
 			x = 0
 			
@@ -596,7 +603,7 @@ def chapter_1():
 		elif x == 9:
 			show_text_3("教授在大學時代，大家都在辦活動在玩的時候，我總是一個人在圖書館．．．．．．")
 		elif x == 10:
-			change_background("教室+對話框+名字框.png", "教室+對話框.png", 30)
+			original_board("教室+對話框.png")
 			par += 1
 			x = 0
 			
@@ -621,7 +628,7 @@ def chapter_1():
 		elif x == 7:
 			show_text_4("現在回頭太遲了嗎？")
 		elif x == 8:
-			change_background("教室+對話框.png", "教室+對話框+名字框.png", 30)
+			original_board("教室+對話框+名字框.png")
 			par += 1
 			x = 0
 			
@@ -637,7 +644,7 @@ def chapter_1():
 		elif x == 3:
 			show_text_2("請大家上台用一分鐘介紹你自己，下次再開始上正課。")
 		elif x == 4:
-			change_background("教室+對話框+名字框.png", "教室+對話框.png", 30)
+			original_board("教室+對話框.png")
 			par += 1
 			x = 0
 			
@@ -655,7 +662,7 @@ def chapter_1():
 		elif x == 4:
 			show_text_4("一開始大家都還試著掰出一分鐘的長度，後來漸漸地大家就開始無視這規則了......而我也是這麼打算的。")
 		elif x == 5:
-			change_background("教室+對話框.png", "教室+對話框+名字框.png", 30)
+			change_background("教室+對話框.png", "教室+對話框+名字框.png", 10)
 			par += 1
 			x = 0
 	
@@ -695,7 +702,7 @@ def chapter_1():
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 5:
 			show_text_name_for_2("??")
-			show_text_2("我叫神谷智則，御影同學，請多指教。")
+			show_text_1("我叫神谷智則，御影同學，請多指教。")
 		elif x == 6:
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 7:
@@ -846,6 +853,7 @@ def chapter_1():
 			
 	elif par == 15 and choice == 1:
 		theblock_for_changing_background = 4 + 1
+		z = 0
 		if x == 0:
 			original_board("教室+好朋友和女主+對話框+名字框.png")	
 		elif x == 1:
@@ -864,6 +872,7 @@ def chapter_1():
 			
 	elif par == 15 and choice == 2:
 		theblock_for_changing_background = 8 + 1
+		z = 0
 		if x == 0:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 1:
@@ -892,6 +901,7 @@ def chapter_1():
 			
 	elif par == 15 and choice == 3:
 		theblock_for_changing_background = 4 + 1
+		z = 0
 		if x == 0:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 1:
@@ -918,51 +928,165 @@ def chapter_1():
 		elif x == 2:
 			show_text_4("（第一堂課結束）")
 		elif x == 3:
-			change_background("教室+對話框.png", "arc.jpg", 30)
+			change_background("教室+對話框.png", "黒+對話框.png", 30)
 			par += 1
 			x = 0
-			
-	elif par == 17:
-		theblock_for_changing_background = 6 + 1	
-		if x == 0:
-			original_board("clock.jpg")
-		elif x == 1:
-			show_text_1("（過了一些日子）")
-		elif x == 2:
-			original_board("clock.jpg")
-		elif x == 3:
-			show_text_1("原以為上了大學脫離家裡，生活會改變許多。其實也真的還好，或許個性上我就是比較獨立，")
-		elif x == 4:
-			show_text_2("又或許我其實早已脫離那個家也說不定。")
-		elif x == 5:
-			show_text_3("不管怎麼樣，開學也快一個月了，差不多習慣了這裡的生活，系上的人們也漸漸活絡起來了。")
-		elif x == 6:
-			change_background("clock.jpg", "arc.jpg", 30)
-			par += 1
-			x = 0
-			
-	elif par == 18:
-		theblock_for_changing_background = 6 + 1	
-		if x == 0:
-			original_board("arc.jpg")
-		elif x == 1:
-			show_text_name_for_4("神谷   智則")
-			show_text_1("「對了，你等會兒有空嗎？要不要一起出去玩玩？我住在這個附近我帶你去認識這個地方」")
-		elif x == 2:
-			original_board("arc.jpg")
-			x += 1
-		elif x == 3:
-			show_text_1("要不要跟他出去玩呢...?")
-		elif x == 4:
-			show_text_2("1.也好，晚上剛好也沒甚麼事，就出去玩玩交朋友吧~    回答好朋友1：好啊~")
-			show_text_3("2.不要好了，暫時不想和人有太多接觸")
-		elif x == 6:
-			original_board("arc.jpg")
-			par += 1
-			x = 0		
-			goch1 = False	
 
 			
+	elif par == 17:
+		theblock_for_changing_background = 9 + 1
+		if x == 0:
+			original_board("黒+對話框.png")
+		elif x == 1:
+			show_text_1("(過了一些日子)")
+		elif x == 2:
+			original_board("黒+對話框.png")
+		elif x == 3:
+			show_text_1("原以為上了大學脫離家裡，生活會改變許多。")			
+		elif x == 4:
+			show_text_2("其實也真的還好，或許個性上我就是比較獨立吧。")
+		elif x == 5:
+			original_board("黒+對話框.png")
+		elif x == 6:
+			show_text_1("不管怎麼樣，開學也快一個月了，差不多習慣了這裡的生活，")
+		elif x == 7:
+			original_board("黒+對話框.png")
+		elif x == 8:
+			show_text_1("系上的氣氛也漸漸活絡起來了。")
+		elif x == 9:
+			change_background("黒+對話框.png", "街頭+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 18:	
+		theblock_for_changing_background = 7 + 1
+		if x == 0:
+			original_board("街頭+好朋友+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("周末有空嗎？要不要一起出去逛逛？")
+		elif x == 2:
+			original_board("街頭+好朋友+對話框.png")
+		elif x == 3:
+			show_text_1("開學以來多少也記住了幾位同學的名字，不過比較常往來的還是只有智則和凜。")
+		elif x == 4:
+			original_board("街頭+好朋友+對話框.png")
+		elif x == 5:
+			show_text_1("智則是熱情的人，不過…該去嗎？")
+		elif x == 6:
+			original_board("街頭+好朋友+對話框.png")
+		elif x == 7:
+			button_for_chapter("剛好沒甚麼事，就出去逛逛吧",100, 580, 800, 30, 2, dark_gray, black, whattodo = "剛好沒甚麼事，就出去逛逛吧")
+			button_for_chapter("在宿舍讀書好了", 100, 620, 800, 30, 2, dark_gray, black, whattodo = "在宿舍讀書好了")
+		if x > 7:
+			x = 7
+		if z == 1:
+			change_background("街頭+好朋友+對話框.png", "街頭+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+			
+	elif par == 19 and choice == 1:	
+		theblock_for_changing_background = 4 + 1
+		z = 0
+		if x == 0:
+			original_board("街頭+好朋友+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("耐斯，那就到時候見囉！")
+		elif x == 2:
+			original_board("街頭+對話框.png")
+		elif x == 3:
+			show_text_1("要拒絕他還真有點不好意思，現在也沒什麼心情念書，出去散散心也好吧。")
+		elif x == 4:
+			change_background("街頭+對話框.png", "blackintro.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 19 and choice == 2:	
+		theblock_for_changing_background = 33 + 1
+		z = 0
+		if x == 0:
+			original_board("街頭+好朋友+對話框+名字框.png")
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("好吧，我好像也應該讀點書……")
+		elif x == 2:
+			original_board("街頭+好朋友+對話框+名字框.png")
+		elif x == 3:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("沒有啦，我亂講的== 改天有空一起出來吧。")
+		elif x == 4:
+			original_board("街頭+對話框.png")
+		elif x == 5:
+			show_text_1("其實拒絕他還滿不好意思的，")
+		elif x == 6:
+			original_board("街頭+對話框.png")
+		elif x == 7:
+			show_text_1("不過也不確定自己是不是真的想和沒那麼熟的人出去。")
+		elif x == 8:
+			original_board("街頭+對話框.png")
+		elif x == 9:
+			show_text_1("該念的書還是得念吧，都進這間學校了......")
+		elif x == 10:
+			change_background("街頭+對話框.png", "宿舍+對話框.png", 30)
+			x += 1
+		elif x == 11:
+			original_board("宿舍+對話框.png")
+		elif x == 12:
+			show_text_1("(放下會計課本休息一下...)")
+		elif x == 13:
+			original_board("宿舍+對話框.png")
+		elif x == 14:
+			show_text_1("不知道智則今天去哪玩了呢？")
+		elif x == 15:
+			original_board("宿舍+對話框.png")
+			x += 1
+		elif x == 16:
+			show_text_1("開學到現在，其實並不排斥這科系要學的科目，")
+		elif x == 17:
+			show_text_2("但也不確定是不是真的喜歡。")
+		elif x == 18:
+			show_text_3("大概也是得走過才知道路有多崎嶇，")
+		elif x == 19:
+			show_text_4("還是別抱怨了吧。")
+		elif x == 20:
+			original_board("宿舍+對話框.png")
+		elif x == 21:
+			show_text_1("好了，下一科。")
+		elif x == 22:
+			change_background("宿舍+對話框.png", "黒+對話框.png", 30)
+			x += 1
+		elif x == 23:
+			original_board("黒+對話框.png")
+		elif x == 24:
+			show_text_1("線性代數好難啊。")
+		elif x == 25:
+			original_board("黒+對話框.png")
+		elif x == 26:
+			show_text_1("進行投影")
+			show_text_2("是因為不是每個問題都有解答")
+		elif x == 27:
+			original_board("黒+對話框.png")
+		elif x == 28:
+			show_text_1("限制式多")
+			show_text_2("而能控制的變數太少")
+			show_text_3("就像想用單一的顏色畫出這座城市")
+		elif x == 29:
+			original_board("黒+對話框.png")
+		elif x == 30:
+			show_text_1("或許我們所有人或多或少都不屬於這個空間")
+		elif x == 31:
+			show_text_2("而我們還是努力地在這個世界")
+		elif x == 32:
+			show_text_3("尋求那個屬於我們的最佳投影。")
+		elif x == 33:
+			change_background("黒+對話框.png", "blackintro.png", 30)
+			par += 1
+			x = 0
+			goch1 = False	
+
+		
 
 
 def chapter_2():
@@ -1093,13 +1217,13 @@ background_file = "arc.jpg"
 original_board(background_file)
 pygame.time.delay(intro_delay_time)
 original_board(background_file)
-change_background("arc.jpg", "校園.png", intro_change_speed)
+change_background("arc.jpg", "校園+對話框.png", intro_change_speed)
 
-background_file = "校園.png"
+background_file = "校園+對話框.png"
 original_board(background_file)
 pygame.time.delay(intro_delay_time)
 original_board(background_file)
-change_background("校園.png", "blackintro.png", 40)
+change_background("校園+對話框.png", "blackintro.png", 40)
 
 background_file = "blackintro.png"
 original_board(background_file)

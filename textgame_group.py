@@ -418,6 +418,17 @@ def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = N
 				choice = 2
 				z = 1
 			
+			elif whattodo == "會回家":
+				choice = 1
+				z = 1
+			elif whattodo == "不回家":
+				choice = 2
+				z = 1
+			
+			elif whattodo == "我需要治療！":
+				z = 1
+				
+			
 			elif whattodo == "物歸原位(丟回去)":
 				choice = 1
 				z = 1
@@ -516,7 +527,7 @@ def chapter_1():
 		elif x == 3:
 			show_text_name_for_2("校長")
 		elif x == 4:
-			show_text_1("歡迎來到伯勞大學！")
+			show_text_1("歡迎來到柏勞大學！")
 		elif x == 5:
 			show_text_2("在這令人興奮的時刻，我在台上看到的是一朵朵生機盎然的嫩芽，渴望著養分灌溉。")
 		elif x == 6:
@@ -603,7 +614,7 @@ def chapter_1():
 			original_board("教室+對話框+名字框.png")
 		elif x == 1:
 			show_text_name_for_2("教授")
-			show_text_1("同學們請安靜坐好，開始上課囉")
+			show_text_1("啊嗯~同學們請安靜坐好，開始上課囉")
 		elif x == 2:
 			original_board("教室+對話框.png")
 		elif x == 3:
@@ -616,7 +627,7 @@ def chapter_1():
 		elif x == 6:
 			show_text_name_for_2("教授")
 		elif x == 7:
-			show_text_1("還是不免俗地說一句歡迎各位來到伯勞大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
+			show_text_1("還是不免俗地說一句歡迎各位來到柏勞大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
 		elif x == 8:
 			show_text_2("但也要勸各位盡早收起浮躁，好好努力才是真的。")
 		elif x == 9:
@@ -716,7 +727,7 @@ def chapter_1():
 		elif x == 2:
 			original_board("教室+好朋友+對話框.png")
 		elif x == 3:
-			show_text_1("回頭一看，一個帶著粗框眼鏡的帥氣男孩笑咪咪地看著我。")
+			show_text_1("回頭一看，一個戴著粗框眼鏡的帥氣男孩笑咪咪地看著我。")
 		elif x == 4:
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 5:
@@ -786,9 +797,9 @@ def chapter_1():
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 14:
 			show_text_name_for_4("神谷   智則")
-			show_text_1("什麼鬼哈哈哈，")
+			show_text_1("什麼鬼哈哈哈")
 		elif x == 15:
-			show_text_2("，聽說這學校畢業生的就業率是完美的100%，而且他們全都進入了很不錯的大公司呢")
+			show_text_2("聽說這學校畢業生的就業率是完美的100%，而且他們全都進入了很不錯的大公司呢")
 		elif x == 16:
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 17:
@@ -1120,44 +1131,536 @@ def chapter_2():
 	global x, goch2, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
 	
 	if par == 1:
-		theblock_for_changing_background = 13 + 1
+		theblock_for_changing_background = 12 + 1
 		if x == 0:
-			original_board("小街+對話框.png")
+			original_board("校園+對話框.png")
+			x += 1
 		elif x == 1:
-			show_text_1("這天吃完早餐準備去上課，")
+			show_text_1("中秋節快到了，最近校園中充滿著對連假的期待。")
 		elif x == 2:
-			show_text_2("走著走著，發現前方路上有張學生證。")
+			show_text_2("人們嘴裡談論的不是連假要去哪裡玩，就是要去哪裡烤肉。")
 		elif x == 3:
-			original_board("小街+對話框.png")
-			x += 1
+			show_text_3("對於負笈求學的遊子來說，也是難得能回家一次的機會。")
 		elif x == 4:
-			show_text_1("B0X70XXXX，XXX，照片是個男生，從學號看應該和我一樣是管院的人。")
+			original_board("校園+對話框.png")
+			x += 1
 		elif x == 5:
-			original_board("小街+對話框.png")
-			x += 1
+			show_text_1("我應該要回家嗎……")
 		elif x == 6:
-			show_text_1("這個嘛…我應該要…")
-		elif x == 7:#button
-			original_board("小街+對話框.png")
+			original_board("校園+對話框.png")
 			x += 1
+		elif x == 7:
+			show_text_1("老實說並沒有特別想家。")
 		elif x == 8:
-			show_text_1("物歸原位(丟回去)")
-			show_text_2("先收著")
-			show_text_3("PO學校交流板")
-		elif x == 9:#選項一
-			original_board("小街+對話框.png")
-			x += 1
+			show_text_2("爸媽偶爾會傳來關心的訊息，問問天氣變冷沒、生活適不適應之類，")
+		elif x == 9:
+			show_text_3("也有問我連假會不會回去，又說如果功課忙沒空回去沒關係。")
 		elif x == 10:
-			show_text_1("放著吧，這張學生證終究會回到屬於它的地方。")
-		elif x == 11:
-			original_board("小街+對話框.png")
+			original_board("校園+對話框.png")
 			x += 1
+		elif x == 11:
+			show_text_1("但聽起來是希望我回去的。")
 		elif x == 12:
-			show_text_1("總之先進教室吧。")			
-		elif x == 13:
-			change_background("小街+對話框.png", "教室+對話框.png", 30)
+			change_background("校園+對話框.png", "校園+好朋友+對話框+名字框.png", 30)
 			par += 1
 			x = 0
+			
+	elif par == 2:
+		theblock_for_changing_background = 7 + 1
+		if x == 0:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("中秋連假有什麼計畫嗎？要不要來…")
+		elif x == 2:
+			show_text_2("對了，你不是本地人吧？你會回家嗎？")
+		elif x == 3:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 4:
+			show_text_name_for_4("御影   翔平˙")
+			show_text_1("我……")
+		elif x == 5:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 6:
+			button_for_chapter("會回家",100, 580, 800, 30, 2, dark_gray, black, whattodo = "會回家")
+			button_for_chapter("不回家", 100, 620, 800, 30, 2, dark_gray, black, whattodo = "不回家")
+		if x > 6:
+			x = 6
+		if z == 1:
+			change_background("校園+好朋友+對話框+名字框.png", "校園+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+
+	elif par == 3 and choice == 1:
+		z = 0
+		theblock_for_changing_background = 9 + 1
+		if x == 0:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1			
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("自己離家求學應該很辛苦吧，")
+		elif x == 2:
+			show_text_2("不過像我這種人就會抱怨離家太近了，哈哈！")
+		elif x == 3:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 4:
+			show_text_name_for_4("御影   翔平˙")
+			show_text_1("人總是會對現狀抱怨吧，哈哈！")
+		elif x == 5:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 6:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("不過家人是很重要的呢，連假結束見啦，中秋節快樂！")
+		elif x == 7:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 8:
+			show_text_name_for_4("御影   翔平˙")
+			show_text_1("中秋節快樂~")
+		elif x == 9:
+			change_background("校園+好朋友+對話框+名字框.png", "宿舍+對話框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 4 and choice == 1:
+		theblock_for_changing_background = 6 + 1
+		if x == 0:
+			original_board("宿舍+對話框.png")
+			x += 1			
+		elif x == 1:
+			show_text_1("沒事先訂票的話，要回家就得坐一趟貴到哭的高鐵，")
+		elif x == 2:
+			show_text_2("或者便宜一點但要花四到五小時的火車。")
+		elif x == 3:
+			original_board("宿舍+對話框.png")
+			x += 1			
+		elif x == 4:
+			show_text_1("爸媽雖然說不要擔心錢的問題，")
+		elif x == 5:
+			show_text_2("但在外面生活才知道處處都要花錢的感覺。")
+		elif x == 6:
+			change_background("宿舍+對話框.png", "夜景+對話框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 5 and choice == 1:
+		theblock_for_changing_background = 8 + 1
+		if x == 0:
+			original_board("夜景+對話框.png")
+			x += 1
+		elif x == 1:
+			show_text_1("於是跟著車站的人山人海漂流回到家鄉。")
+		elif x == 2:
+			show_text_2("日暮向晚時分，南方的空氣飄著幾分溫暖和人情。")
+		elif x == 3:
+			show_text_3("回到熟悉的地方，感覺總是好的。")
+		elif x == 4:
+			original_board("夜景+對話框.png")
+			x += 1
+		elif x == 5:
+			show_text_1("一個多月沒有關心家裡的消息，越靠近家門越感到有點卻步。")
+		elif x == 6:
+			original_board("夜景+對話框.png")
+			x += 1
+		elif x == 7:
+			show_text_1("家裡的慣例是中秋吃火鍋，我們圍著餐桌，一切就像我沒出門過。")
+		elif x == 8:
+			change_background("夜景+對話框.png", "烤肉1+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 6 and choice == 1:
+		theblock_for_changing_background = 15 + 1
+		if x == 0:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("翔平   他爸")
+			show_text_1("生活還習慣吧？課業順利嗎^^")
+		elif x == 2:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("乾你屁事^^")
+		elif x == 4:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_1("我們用著熟悉的模式對談，沒有什麼比這更讓人感到溫暖的了。")
+		elif x == 6:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 7:
+			show_text_1("明月下沉，隱約的也想記著這頓飯的滋味，帶回學校去。")
+		elif x == 8:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 9:
+			show_text_1("(臨走前)")
+		elif x == 10:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 11:
+			show_text_name_for_4("翔平   媽")
+			show_text_1("下次回來什麼時候啊？")
+		elif x == 12:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 13:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("乾你…")
+		elif x == 14:
+			show_text_2("…沒有啦，有空會盡量回來的。")
+		elif x == 15:
+			change_background("烤肉1+對話框+名字框.png", "小街+對話框.png", 30)
+			x = 0
+			choice = 0
+			goch2 = False
+			
+	elif par == 3 and choice == 2:
+		z = 0
+		theblock_for_changing_background = 18 + 1
+		if x == 0:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("喔？那要不要來我家？")
+		elif x == 2:
+			show_text_2("我家每年這時候都會烤肉，我爸每年也都叫我找朋友來。")
+		elif x == 3:
+			show_text_3("怎麼樣，可以溫暖你的胃跟你的心喔，河河河河河——")
+		elif x == 4:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("這樣啊…好像挺划算的喔？")
+		elif x == 6:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 7:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("該來烤肉了吧！")
+		elif x == 8:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 9:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("該烤肉了嗎？")
+		elif x == 10:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 11:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("是時候烤肉了！")
+		elif x == 12:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 13:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("要烤肉就趁這時候了！")
+		elif x == 14:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 15:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("那就到時候見吧！")
+		elif x == 16:
+			original_board("校園+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 17:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("也只能到時候見了！")
+		elif x == 18:
+			change_background("校園+好朋友+對話框+名字框.png", "烤肉1+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+	
+	elif par == 4 and choice == 2:
+		theblock_for_changing_background = 16 + 1
+		if x == 0:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_1("(中秋當晚)")
+		elif x == 2:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_1("智則家聚集了很多人，")
+		elif x == 4:
+			show_text_2("智則說每年他們家都廣邀親朋好友和街坊鄰居。")
+		elif x == 5:
+			show_text_3("不管認不認識，來到這裡就是他們的一份子。")
+		elif x == 6:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 7:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("叔叔阿姨好~")
+		elif x == 8:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 9:
+			show_text_name_for_4("智則   他媽")
+			show_text_1("多吃一點啊，不要回家的時候還買泡麵回去吃喔，哈哈！")
+		elif x == 10:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 11:
+			show_text_name_for_4("智則   他爸")
+			show_text_1("吃完三盤才能走啊，沒在跟你廢話")
+		elif x == 12:
+			original_board("烤肉1+對話框+名字框.png")
+			x += 1
+		elif x == 13:
+			show_text_1("附近就是海邊，在外面邊吹風邊烤肉相當舒服。")
+		elif x == 14:
+			show_text_2("大人們有的忙著張羅食物，有的圍著圈泡茶聊天，")
+		elif x == 15:
+			show_text_3("圍繞著大家的則是追逐打鬧的小朋友們。")
+		elif x == 16:
+			change_background("烤肉1+對話框+名字框.png", "烤肉1+好朋友+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 5 and choice == 2:
+		theblock_for_changing_background = 19 + 1
+		if x == 0:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("玩的開心嗎？")
+		elif x == 2:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("滿好玩的啊，我喜歡這裡的氛圍。")
+		elif x == 4:
+			show_text_2("你爸媽人也都好好，每年都辦這種活動，讓平常不常見的人們能聚在一起。")
+		elif x == 5:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 6:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("哈哈，他們只是比較愛熱鬧啦。")
+		elif x == 7:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 8:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("真羨慕啊，我也想在這種環境下長大。")
+		elif x == 9:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 10:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("那怎麼樣，有溫暖到你的心嗎？(微笑)")
+		elif x == 11:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 12:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("什麼…難道你…(心跳)")
+		elif x == 13:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 14:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("沒有錯…")
+		elif x == 15:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 16:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("可是智則，我…")
+		elif x == 17:
+			show_text_2("我…")
+		elif x == 18:
+			show_text_3("我…")
+		elif x == 19:
+			original_board("烤肉1+好朋友+對話框+名字框.png")
+			x += 1
+		elif x == 20:
+			button_for_chapter("我需要治療！", 100, 580, 800, 30, 2, dark_gray, black, whattodo = "我需要治療！")
+			button_for_chapter("我需要治療！", 100, 620, 800, 30, 2, dark_gray, black, whattodo = "我需要治療！")
+			button_for_chapter("我需要治療！", 100, 660, 800, 30, 2, dark_gray, black, whattodo = "我需要治療！")
+		if x > 20:
+			x = 20
+		if z == 1:
+			change_background("烤肉1+好朋友+對話框+名字框.png", "烤肉1+好朋友和女主+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 6 and choice == 2:
+		z = 0
+		theblock_for_changing_background = 8 + 1
+		if x == 0:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("你們在幹嘛？")
+		elif x == 2:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("嗨阿凜，原來妳也來了")
+		elif x == 4:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("我從認識智則後每年都來吃啊")
+		elif x == 6:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 7:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("也吃得差不多了，我們出去走走吧。")
+		elif x == 8:
+			change_background("烤肉1+好朋友和女主+對話框+名字框.png", "夜景+好朋友和女主+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 7 and choice == 2:
+		theblock_for_changing_background = 27 + 1
+		if x == 0:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("哈啊，吃得好飽！對了翔平你沒回家啊？")
+		elif x == 2:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 3:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("也才剛開學沒多久，就沒特別想回去了。")
+		elif x == 4:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("這樣喔，離家求學很辛苦吧！")
+		elif x == 6:
+			show_text_2("上大學之後才發現大學生活跟想像的差很多呢。")
+		elif x == 7:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 8:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("下禮拜小考你們唸了嗎？")
+		elif x == 9:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 10:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("下禮拜有小考？")
+		elif x == 11:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 12:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("太廢了吧，你到底怎麼考進來的啊？")
+		elif x == 13:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 14:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("「我乃指考榜首。」")
+		elif x == 15:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 16:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("「你指考榜首？我乃女主角。」")
+		elif x == 17:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 18:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("「你好，女主角。我乃主角，久仰久仰。」")
+		elif x == 19:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 20:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("你也懂此梗？")
+		elif x == 21:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 22:
+			show_text_name_for_4("御影   翔平")
+			show_text_1("我有想好幾組可以講。此小考使我苦惱，我只好果敢點，考好考滿。")
+		elif x == 23:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 24:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("可以。")
+		elif x == 25:
+			original_board("夜景+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 26:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("你頗屌。")
+		elif x == 27:
+			change_background("夜景+好朋友和女主+對話框+名字框.png", "烤肉1+好朋友和女主+對話框+名字框.png", 30)
+			par += 1
+			x = 0
+			
+	elif par == 8 and choice == 2:
+		theblock_for_changing_background = 13 + 1
+		if x == 0:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 1:
+			show_text_1("走著走著，時間也有點晚了。")
+		elif x == 2:
+			show_text_2("和智則的家人道別後，我想我必須要離開")
+		elif x == 3:
+			show_text_3("了。")
+		elif x == 4:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 5:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("謝謝你找我來，我玩得很開心")
+		elif x == 6:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 7:
+			show_text_name_for_4("神谷   智則")
+			show_text_1("哈哈，感謝來玩，你果然是很有趣的人啊！")
+		elif x == 8:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 9:
+			show_text_name_for_4("榊原   凜")
+			show_text_1("對啊，本來還覺得你好像有點陰沉，但你屁話其實不少啊xD 掰啦~")
+		elif x == 10:
+			original_board("烤肉1+好朋友和女主+對話框+名字框.png")
+			x += 1
+		elif x == 11:
+			show_text_1("滿月的夜晚，心中似乎改變了什麼，")
+		elif x == 12:
+			show_text_2("不過隱約覺得是踏實的，感覺還不錯。")
+		elif x == 13:
+			change_background("烤肉1+好朋友和女主+對話框+名字框.png", "小街+對話框.png", 30)
+			x = 0
+			choice = 0
 			goch2 = False
 
 
@@ -1906,7 +2409,7 @@ data = list()
 gameExit = False
 x = 0	
 par = 1
-chapter_pointer = 4
+chapter_pointer = 1
 
 choice = 0
 z = 0

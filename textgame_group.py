@@ -2005,6 +2005,7 @@ def chapter_4():
 			change_background("運動場+好朋友+對話框+名字框.png", "教室+對話框+名字框.png", 15)
 			par += 1
 			x = 0
+			z = 0
 			goch4 = False
 			
 
@@ -2158,7 +2159,7 @@ def chapter_8():
 			change_background("黒+對話框.png", "blackintro.png", 30)
 			par += 1
 			x = 0
-			goch8 = False
+			goch8 = False 
 		
 
 
@@ -2512,7 +2513,7 @@ while not gameExit:
 	elif chapter_pointer == 4 and goch4 == False:
 		x = 0
 		par = 1
-		chapter_pointer = 5
+		chapter_pointer = 8
 		
 	
 	if chapter_pointer == 5 and goch5 == True:

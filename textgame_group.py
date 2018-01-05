@@ -520,7 +520,7 @@ def chapter_1():
 		elif x == 3:
 			show_text_name_for_2("校長")
 		elif x == 4:
-			show_text_1("歡迎來到伯勞大學！")
+			show_text_1("歡迎來到柏勞大學！")
 		elif x == 5:
 			show_text_2("在這令人興奮的時刻，我在台上看到的是一朵朵生機盎然的嫩芽，渴望著養分灌溉。")
 		elif x == 6:
@@ -607,7 +607,7 @@ def chapter_1():
 			original_board("教室+對話框+名字框.png")
 		elif x == 1:
 			show_text_name_for_2("教授")
-			show_text_1("同學們請安靜坐好，開始上課囉")
+			show_text_1("啊嗯~同學們請安靜坐好，開始上課囉")
 		elif x == 2:
 			original_board("教室+對話框.png")
 		elif x == 3:
@@ -620,7 +620,7 @@ def chapter_1():
 		elif x == 6:
 			show_text_name_for_2("教授")
 		elif x == 7:
-			show_text_1("還是不免俗地說一句歡迎各位來到伯勞大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
+			show_text_1("還是不免俗地說一句歡迎各位來到柏勞大學。在剛脫離升學壓力，迎接新生活的階段，我明白大家都還是很亢奮的。")
 		elif x == 8:
 			show_text_2("但也要勸各位盡早收起浮躁，好好努力才是真的。")
 		elif x == 9:
@@ -720,7 +720,7 @@ def chapter_1():
 		elif x == 2:
 			original_board("教室+好朋友+對話框.png")
 		elif x == 3:
-			show_text_1("回頭一看，一個帶著粗框眼鏡的帥氣男孩笑咪咪地看著我。")
+			show_text_1("回頭一看，一個戴著粗框眼鏡的帥氣男孩笑咪咪地看著我。")
 		elif x == 4:
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 5:
@@ -790,9 +790,9 @@ def chapter_1():
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 14:
 			show_text_name_for_4("神谷   智則")
-			show_text_1("什麼鬼哈哈哈，")
+			show_text_1("什麼鬼哈哈哈")
 		elif x == 15:
-			show_text_2("，聽說這學校畢業生的就業率是完美的100%，而且他們全都進入了很不錯的大公司呢")
+			show_text_2("聽說這學校畢業生的就業率是完美的100%，而且他們全都進入了很不錯的大公司呢")
 		elif x == 16:
 			original_board("教室+好朋友+對話框+名字框.png")
 		elif x == 17:
@@ -905,17 +905,17 @@ def chapter_1():
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 3:
 			show_text_name_for_4("御影   翔平")
-			show_text_1("還好啦，就if跟else而已啊~")
+			show_text_1("還好啦，就if跟else而已啊。")
 		elif x == 4:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 5:
 			show_text_name_for_4("神谷   智則")
-			show_text_1("對啊，這樣就停修也太玻璃了吧")
+			show_text_1("對啊，這樣就停修也太玻璃了吧！==")
 		elif x == 6:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 7:
 			show_text_name_for_2("三人")
-			show_text_1("哈哈哈哈哈哈哈哈哈哈")
+			show_text_1("哈哈哈哈哈哈哈哈哈哈！！")
 		elif x == 8:
 			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+對話框.png", 30)
 			par += 1
@@ -1121,7 +1121,7 @@ def chapter_1():
 
 
 def chapter_2():
-	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch2, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
 	
 	if par == 1:
 		theblock_for_changing_background = 12 + 1
@@ -2484,7 +2484,7 @@ data = list()
 gameExit = False
 x = 0	
 par = 1
-chapter_pointer = 9
+chapter_pointer = 2
 
 choice = 0
 z = 0

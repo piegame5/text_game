@@ -1,7 +1,7 @@
 import pygame
 import time
 import pickle
-
+import os
 pygame.init()
 
 pygame.font.get_fonts()
@@ -184,12 +184,12 @@ def change_background(now, new, changespeed):
 
 
 def saving():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed
 	
 	saved = False
 	while not saved:
-		pygame.draw.rect(screen, black, [200, 50, 700, 70])
-		message_to_screen("WHICH FILE DO YOU WANT TO SAVE THE GAME?(1/2/3)", white, 210, 70)
+		pygame.draw.rect(screen, black, [200, 50, 850, 70])
+		message_to_screen("WHICH FILE(1/2/3) DO YOU WANT TO SAVE THE GAME?	esc to end the game", white, 250, 70)
 		pygame.display.flip()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -197,33 +197,35 @@ def saving():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					saved = True
+					gameExit = True	
 				if event.key == pygame.K_1:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved1", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
 				if event.key == pygame.K_2:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved2", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
 				if event.key == pygame.K_3:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved3", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
-	
-	gameExit = True			
+				else:
+					saved = True
+			
 	
 	
 def loading():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
 	
 	original_board(background_file)
 	
@@ -265,8 +267,8 @@ def loading():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_n:	
 					loaded = True
-					change_background("start.png", "黒+對話框.png", 20)
-					background_file = "黒+對話框.png"
+					change_background("start.png", "第一章.png", 20)
+					background_file = "第一章.png"
 				
 				if event.key == pygame.K_1:	
 					with open("saved1", "rb") as f:
@@ -278,10 +280,19 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 					
@@ -295,10 +306,19 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 					
@@ -312,16 +332,25 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 			
 
 def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
@@ -331,8 +360,8 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 		if click[0] == 1 and whattodo != None:
 			if whattodo == "NEW GAME":
 				loaded = True
-				change_background("start.png", "黒+對話框.png", 20)
-				background_file = "黒+對話框.png"
+				change_background("start.png", "第一章.png", 20)
+				background_file = "第一章.png"
 			elif whattodo == "DATA1":
 				with open("saved1", "rb") as f:
 						data = pickle.load(f)						
@@ -343,10 +372,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 			elif whattodo == "DATA2":
@@ -359,10 +397,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 			elif whattodo == "DATA3":
@@ -375,10 +422,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 				
@@ -391,7 +447,7 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 
 
 def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic, playmusic2, loaded, choice, z
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded, choice, z
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
@@ -418,18 +474,18 @@ def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = N
 				choice = 2
 				z = 1
 			
-			elif whattodo == "出發":
-				choice = 1
-				z = 1
 			elif whattodo == "會回家":
 				choice = 1
 				z = 1
 			elif whattodo == "不回家":
 				choice = 2
 				z = 1
+			
 			elif whattodo == "我需要治療！":
 				z = 1
-			if whattodo == "物歸原位(丟回去)":
+				
+			
+			elif whattodo == "物歸原位(丟回去)":
 				choice = 1
 				z = 1
 			elif whattodo == "先收著":
@@ -439,31 +495,44 @@ def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = N
 				choice = 3
 				z = 1
 				
-				
-				
+			elif whattodo == "參加":
+				choice = 1
+				z = 1
+			
+			elif whattodo == "出發":
+				choice = 1
+				z = 1	
+	
+	
 	else:
 		pygame.draw.rect(screen, ic, [x_pos, y, w, h], line_thickness)
 		
 	
-	pygame.display.flip()
+	pygame.display.flip()	
 	
 	
 	
 def chapter_1():
-	global x, goch1, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch1, par, theblock_for_changing_background,playmusic1, playmusic1_2, playmusic2, nowplaying, musicfrom, choice, z
+	
+	if par == 0:
+		original_board("第一章.png")
+		pygame.time.delay(1500)
+		original_board("第一章.png")
+		change_background("第一章.png", "黒+對話框.png", 30)
+		par += 1
 	
 	
-	
-	if par == 1:
+	elif par == 1:
 		theblock_for_changing_background = 12 + 1
 		
-		if playmusic == True:
+		if playmusic1 == True:
 			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("cr_music.mp3")
+			pygame.mixer.music.load("kara_m01.mp3")
 			musicfrom = 0
-			nowplaying = "cr_music.mp3"
-			pygame.mixer.music.play(-1)	
-			playmusic = False
+			nowplaying = "kara_m01.mp3"
+			pygame.mixer.music.play(-1, musicfrom)	
+			playmusic1 = False
 			
 		if x == 0:
 			original_board("黒+對話框.png")
@@ -500,16 +569,6 @@ def chapter_1():
 
 	elif par == 2:
 		theblock_for_changing_background = 20 + 1
-		
-		if playmusic2 == True:
-			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("kara_m01.mp3")
-			musicfrom = 0
-			nowplaying = "kara_m01.mp3"
-			pygame.mixer.music.play(-1)	
-			playmusic2 = False
-			
-			
 		if x == 0:
 			original_board("校園+對話框.png")
 		elif x == 1:
@@ -905,17 +964,17 @@ def chapter_1():
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 3:
 			show_text_name_for_4("御影   翔平")
-			show_text_1("還好啦，就if跟else而已啊。")
+			show_text_1("還好啦，就if跟else而已啊~")
 		elif x == 4:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 5:
 			show_text_name_for_4("神谷   智則")
-			show_text_1("對啊，這樣就停修也太玻璃了吧！==")
+			show_text_1("對啊，這樣就停修也太玻璃了吧")
 		elif x == 6:
 			original_board("教室+好朋友和女主+對話框+名字框.png")
 		elif x == 7:
 			show_text_name_for_2("三人")
-			show_text_1("哈哈哈哈哈哈哈哈哈哈！！")
+			show_text_1("哈哈哈哈哈哈哈哈哈哈")
 		elif x == 8:
 			change_background("教室+好朋友和女主+對話框+名字框.png", "教室+對話框.png", 30)
 			par += 1
@@ -962,6 +1021,16 @@ def chapter_1():
 			
 	elif par == 17:
 		theblock_for_changing_background = 9 + 1
+		
+		if playmusic1_2 == True:
+			pygame.mixer.music.fadeout(1000)
+			pygame.mixer.music.load("one_days_leave.mp3")
+			musicfrom = 0
+			nowplaying = "one_days_leave.mp3"
+			pygame.mixer.music.play(-1, musicfrom)	
+			playmusic1_2 = False
+			
+			
 		if x == 0:
 			original_board("黒+對話框.png")
 		elif x == 1:
@@ -1026,7 +1095,7 @@ def chapter_1():
 		elif x == 3:
 			show_text_1("要拒絕他還真有點不好意思，現在也沒什麼心情念書，出去散散心也好吧。")
 		elif x == 4:
-			change_background("街頭+對話框.png", "blackintro.png", 30)
+			change_background("街頭+對話框.png", "第二章.png", 30)
 			par += 1
 			x = 0
 			
@@ -1108,7 +1177,7 @@ def chapter_1():
 		elif x == 32:
 			show_text_3("尋求那個屬於我們的最佳投影。")
 		elif x == 33:
-			change_background("黒+對話框.png", "blackintro.png", 30)
+			change_background("黒+對話框.png", "第二章.png", 30)
 			par += 1
 			x = 0
 			
@@ -1121,10 +1190,27 @@ def chapter_1():
 
 
 def chapter_2():
-	global x, goch2, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch2, par, theblock_for_changing_background, playmusic1_2, playmusic2, nowplaying, musicfrom, choice, z, playmusic3
+	
+	if par == 0:
+		original_board("第二章.png")
+		pygame.time.delay(1500)
+		original_board("第二章.png")
+		change_background("第二章.png", "校園+對話框.png", 30)
+		par += 1
 	
 	if par == 1:
 		theblock_for_changing_background = 12 + 1
+		
+		if playmusic2 == True:
+			pygame.mixer.music.fadeout(1000)
+			pygame.mixer.music.load("timetolove_october.mp3")
+			musicfrom = 0
+			nowplaying = "timetolove_october.mp3"
+			pygame.mixer.music.play(-1, musicfrom)	
+			playmusic2 = False
+			
+		
 		if x == 0:
 			original_board("校園+對話框.png")
 			x += 1
@@ -1312,7 +1398,7 @@ def chapter_2():
 		elif x == 14:
 			show_text_2("…沒有啦，有空會盡量回來的。")
 		elif x == 15:
-			change_background("烤肉1+對話框+名字框.png", "小街+對話框.png", 30)
+			change_background("烤肉1+對話框+名字框.png", "第三章.png", 30)
 			x = 0
 			choice = 0
 			goch2 = False
@@ -1651,7 +1737,7 @@ def chapter_2():
 		elif x == 12:
 			show_text_2("不過隱約覺得是踏實的，感覺還不錯。")
 		elif x == 13:
-			change_background("烤肉1+好朋友和女主+對話框+名字框.png", "小街+對話框.png", 30)
+			change_background("烤肉1+好朋友和女主+對話框+名字框.png", "第三章.png", 30)
 			x = 0
 			choice = 0
 			goch2 = False
@@ -1660,10 +1746,26 @@ def chapter_2():
 
 			
 def chapter_3():
-	global x, goch3, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch3, par, theblock_for_changing_background, playmusic2, playmusic3, playmusic4, nowplaying, musicfrom, choice, z
+	
+	if par == 0:
+		original_board("第三章.png")
+		pygame.time.delay(1500)
+		original_board("第三章.png")
+		change_background("第三章.png", "小街+對話框.png", 30)
+		par += 1
 	
 	if par == 1:
 		theblock_for_changing_background = 8 + 1
+		
+		if playmusic3 == True:
+			pygame.mixer.music.fadeout(1000)
+			pygame.mixer.music.load("kara_m01.mp3")
+			musicfrom = 0
+			nowplaying = "kara_m01.mp3"
+			pygame.mixer.music.play(-1, musicfrom)	
+			playmusic3 = False
+		
 		if x == 0:
 			original_board("小街+對話框.png")
 		elif x == 1:
@@ -1821,7 +1923,7 @@ def chapter_3():
 			show_text_1("(下課鐘聲響起)")
 		elif x == 2: #1:ch3結束  2:par +=1 3:par += 3
 			if choice == 1:
-				change_background("教室+對話框.png", "運動場+好朋友+對話框.png", 30)
+				change_background("教室+對話框.png", "第四章.png", 30)
 				par = 9
 				x = 0
 			elif choice == 2:
@@ -1893,7 +1995,7 @@ def chapter_3():
 			show_text_name_for_4("御影   翔平")
 			show_text_1("主角：哈哈好的，交給妳了。")
 		elif x == 12:
-			change_background("教室+女主+對話框+名字框.png", "運動場+好朋友+對話框.png", 30)
+			change_background("教室+女主+對話框+名字框.png", "第四章.png", 30)
 			par = 9
 			x = 0
 
@@ -1944,7 +2046,7 @@ def chapter_3():
 		elif x == 17:
 			show_text_1("那是失而復得的喜悅。")
 		elif x == 18:
-			change_background("教室+對話框.png", "運動場+好朋友+對話框.png", 30)
+			change_background("教室+對話框.png", "第四章.png", 30)
 			par = 9
 			x = 0
 			
@@ -1956,7 +2058,14 @@ def chapter_3():
 
 
 def chapter_4():
-	global x, goch4, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch4, par, theblock_for_changing_background, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, nowplaying, musicfrom, choice, z
+	
+	if par == 0:
+		original_board("第四章.png")
+		pygame.time.delay(1500)
+		original_board("第四章.png")
+		change_background("第四章.png", "運動場+好朋友+對話框+名字框.png", 30)
+		par += 1
 
 	if par == 1:
 		theblock_for_changing_background = 11 + 1
@@ -1998,11 +2107,19 @@ def chapter_4():
 			change_background("運動場+好朋友+對話框+名字框.png", "教室+對話框+名字框.png", 15)
 			par += 1
 			x = 0
+			z = 0
 			goch4 = False
 			
 
 def chapter_8():
-	global x, goch8, par, theblock_for_changing_background, playmusic, playmusic2, nowplaying, musicfrom, choice, z
+	global x, goch8, par, theblock_for_changing_background, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, nowplaying, musicfrom, choice, z, fade_out
+	
+	if par == 0:
+		original_board("第八章.png")
+		pygame.time.delay(1500)
+		original_board("第八章.png")
+		change_background("第八章.png", "夜景+對話框.png", 30)
+		par += 1
 	
 	if par == 1:
 		theblock_for_changing_background = 13 + 1
@@ -2029,6 +2146,9 @@ def chapter_8():
 			original_board("夜景+對話框.png")
 		elif x == 10:
 			show_text_1("回顧今年，上了大學後")
+			#if fade_out == True:
+				#pygame.mixer.music.fadeout(1000)
+				#fade_out = False
 		elif x == 11:
 			show_text_2("我是否有些變化了？")
 		elif x == 12:
@@ -2090,6 +2210,13 @@ def chapter_8():
 			original_board("黒+對話框.png")
 		elif x == 1:
 			show_text_1("我同意教授的話")
+			if play_ed == True:
+				pygame.mixer.music.fadeout(1000)
+				ed = pygame.mixer.Sound('ed.wav')
+				musicfrom = 0
+				nowplaying = "ed.wav"
+				ed.play(loops = 0, fade_ms = 10000)
+				play_ed = False
 		elif x == 2:
 			show_text_2("成績是自己的，只有自己能負責")
 		elif x == 3:
@@ -2151,52 +2278,55 @@ def chapter_8():
 			change_background("黒+對話框.png", "blackintro.png", 30)
 			par += 1
 			x = 0
-			goch8 = False
+			goch8 = False 
 		
 
 
 		
 def opening():
 	intro_delay_time = 1500
-	intro_change_speed = 48
+	intro_change_speed = 40
+	
+	
 
 	original_board("blackintro.png")
-	change_background("blackintro.png", "sakura.jpg", 20)
-	background_file = "sakura.jpg"
+	change_background("blackintro.png", "op_椰林大道.png", 20)
+	
+	background_file = "op_椰林大道.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
+	change_background("op_椰林大道.png", "op_總圖.png", intro_change_speed)
 
-	background_file = "aniback.jpg"
+	background_file = "op_總圖.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
+	change_background("op_總圖.png", "op_小徑.png", intro_change_speed)
 
-	background_file = "mizuumi.jpg"
+	background_file = "op_小徑.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
+	change_background("op_小徑.png", "op_網球場.png", intro_change_speed)
 
-	background_file = "clock.jpg"
+	background_file = "op_網球場.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
+	change_background("op_網球場.png", "op_陽台.png", intro_change_speed)
 
-	background_file = "arc.jpg"
+	background_file = "op_陽台.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
+	change_background("op_陽台.png", "op_電腦桌1.png", intro_change_speed)
+	
+	background_file = "op_電腦桌1.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("校園.png", "blackintro.png", 40)
+	change_background("op_電腦桌1.png", "blackintro.png", 40)
 
 	background_file = "blackintro.png"
 	original_board(background_file)
@@ -2208,269 +2338,143 @@ def ending():
 	
 	if play_ed == True:
 			pygame.mixer.music.fadeout(1000)
-			ed = pygame.mixer.Sound('Oblivious_E.wav')
+			ed = pygame.mixer.Sound('ed.wav')
 			musicfrom = 0
-			nowplaying = "Oblivious_E.wav"
+			nowplaying = "ed.wav"
 			ed.play(loops = 0, fade_ms = 10000)
 			play_ed = False
 	
-	intro_delay_time = 600
-	intro_change_speed = 20
+	intro_delay_time = 2000
+	intro_change_speed = 10
 
 	original_board("blackintro.png")
-	change_background("blackintro.png", "sakura.jpg", 20)
+	change_background("blackintro.png", "ed_製作委員會前.png", 20)
 	
-	background_file = "sakura.jpg"
+	background_file = "ed_製作委員會前.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
+	change_background("ed_製作委員會前.png", "ed_製作委員會.png", intro_change_speed)
 
-	background_file = "aniback.jpg"
+	background_file = "ed_製作委員會.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
+	change_background("ed_製作委員會.png", "ed_遊戲設計.png", intro_change_speed)
 
-	background_file = "mizuumi.jpg"
+	background_file = "ed_遊戲設計.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
+	change_background("ed_遊戲設計.png", "ed_劇本構成.png", intro_change_speed)
 
-	background_file = "clock.jpg"
+	background_file = "ed_劇本構成.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
+	change_background("ed_劇本構成.png", "ed_劇本協力.png", intro_change_speed)
 
-	background_file = "arc.jpg"
+	background_file = "ed_劇本協力.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
+	change_background("ed_劇本協力.png", "ed_劇本監督.png", intro_change_speed)
 
-	background_file = "校園.png"
+	background_file = "ed_劇本監督.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
+	change_background("ed_劇本監督.png", "ed_人設.png", intro_change_speed)
 
+	background_file = "ed_人設.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_人設.png", "ed_美術設計.png", intro_change_speed)
+	
+	background_file = "ed_美術設計.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_美術設計.png", "ed_畫面濾鏡.png", intro_change_speed)
+	
+	background_file = "ed_畫面濾鏡.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_畫面濾鏡.png", "ed_作畫監督.png", intro_change_speed)
+
+	background_file = "ed_作畫監督.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_作畫監督.png", "ed_程式架構.png", intro_change_speed)
+
+	background_file = "ed_程式架構.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_程式架構.png", "ed_程式功能.png", intro_change_speed)
+
+	background_file = "ed_程式功能.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_程式功能.png", "ed_程式設計.png", intro_change_speed)
+
+	background_file = "ed_程式設計.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_程式設計.png", "ed_網球遊戲.png", intro_change_speed)
+
+	background_file = "ed_網球遊戲.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_網球遊戲.png", "ed_遊戲測試.png", intro_change_speed)
+
+	background_file = "ed_遊戲測試.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_遊戲測試.png", "ed_oblivious.png", intro_change_speed)
+	
+	background_file = "ed_oblivious.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_oblivious.png", "ed_sinners.png", intro_change_speed)
+	
+	background_file = "ed_sinners.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_sinners.png", "ed_m01.png", intro_change_speed)
+
+	background_file = "ed_m01.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_m01.png", "ed_bgm.png", intro_change_speed)
+
+	background_file = "ed_bgm.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_bgm.png", "ed_製作.png", intro_change_speed)
+
+	background_file = "ed_製作.png"
+	original_board(background_file)
+	pygame.time.delay(intro_delay_time)
+	original_board(background_file)
+	change_background("ed_製作.png", "blackintro.png", intro_change_speed)
+	
 	background_file = "blackintro.png"
 	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
+	change_background("blackintro.png", "ending.png", intro_change_speed)
 	
-	background_file = "sakura.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-	background_file = "aniback.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-	background_file = "mizuumi.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-	background_file = "clock.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-	background_file = "arc.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
-
-	background_file = "blackintro.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
 	
-	background_file = "sakura.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-	background_file = "aniback.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-	background_file = "mizuumi.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-	background_file = "clock.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-	background_file = "arc.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
-
-	background_file = "blackintro.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
-	
-	background_file = "sakura.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-	background_file = "aniback.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-	background_file = "mizuumi.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-	background_file = "clock.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-	background_file = "arc.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
-
-	background_file = "blackintro.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
-	
-	background_file = "sakura.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-	background_file = "aniback.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-	background_file = "mizuumi.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-	background_file = "clock.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-	background_file = "arc.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
-
-	background_file = "blackintro.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
-	
-	background_file = "sakura.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
-
-	background_file = "aniback.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
-
-	background_file = "mizuumi.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
-
-	background_file = "clock.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
-
-	background_file = "arc.jpg"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("校園.png", "blackintro.png", intro_change_speed)
-
-	background_file = "blackintro.png"
-	original_board(background_file)
-	pygame.time.delay(intro_delay_time)
-	original_board(background_file)
-	change_background("blackintro.png", "start.png", intro_change_speed)
 	
 
 	go_ed = False
@@ -2483,21 +2487,27 @@ data = list()
 
 gameExit = False
 x = 0	
-par = 1
-chapter_pointer = 2
+par = 0
+chapter_pointer = 1
 
 choice = 0
 z = 0
 
-playmusic = True
+playmusic1 = True
+playmusic1_2 = True
 playmusic2 = True
+playmusic3 = True
+playmusic4 = True
 play_ed = True
+fade_out = True
 
 goch1 = True
 goch2 = True
 goch3 = True
 goch4 = True
 goch5 = True
+goch6 = True
+goch7 = True
 goch8 = True
 go_ed = True
 	
@@ -2505,7 +2515,7 @@ musicfrom = 0.000
 nowplaying = ""
 				
 
-
+#n = input()
 
 pygame.mixer.music.load("sinners.wav")
 nowplaying = "sinners.wav"
@@ -2514,7 +2524,7 @@ pygame.mixer.music.load(nowplaying)
 pygame.mixer.music.play(-1, musicfrom)
 
 #game opening
-#opening()
+opening()
 				
 
 background_file = "start.png"
@@ -2522,6 +2532,9 @@ background = pygame.image.load(background_file).convert()
 
 original_board(background_file)
 loading()
+
+#pygame.mixer.music.load(nowplaying)
+#pygame.mixer.music.play(-1, musicfrom)
 #main loop
 
 original_board(background_file)
@@ -2561,7 +2574,7 @@ while not gameExit:
 		chapter_1()
 	elif chapter_pointer == 1 and goch1 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 2
 	
 	
@@ -2569,7 +2582,7 @@ while not gameExit:
 		chapter_2()
 	elif chapter_pointer == 2 and goch2 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 3
 	
 	
@@ -2577,7 +2590,7 @@ while not gameExit:
 		chapter_3()
 	elif chapter_pointer == 3 and goch3 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 4
 		
 	
@@ -2586,15 +2599,18 @@ while not gameExit:
 		chapter_4()
 	elif chapter_pointer == 4 and goch4 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 5
 		
 	
 	if chapter_pointer == 5 and goch5 == True:
-		chapter_3()
+		path_tennis = os.path.abspath('.')
+		path_tennis += "\\網球\\tennis.py"
+		os.system(path_tennis)
+		goch5 = False
 	elif chapter_pointer == 5 and goch5 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 8
 	
 	
@@ -2602,13 +2618,13 @@ while not gameExit:
 		chapter_8()
 	elif chapter_pointer == 8 and goch8 == False:
 		x = 0
-		par = 1
+		par = 0
 		chapter_pointer = 9
 		
 	if chapter_pointer == 9 and go_ed == True:
 		ending()
 	elif chapter_pointer == 9 and go_ed == False:
-		original_board("sakura.jpg")
+		original_board("ending.png")
 		
 		
 

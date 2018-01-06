@@ -1,7 +1,7 @@
 import pygame
 import time
 import pickle
-
+import os
 pygame.init()
 
 pygame.font.get_fonts()
@@ -184,12 +184,12 @@ def change_background(now, new, changespeed):
 
 
 def saving():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed
 	
 	saved = False
 	while not saved:
-		pygame.draw.rect(screen, black, [200, 50, 700, 70])
-		message_to_screen("WHICH FILE DO YOU WANT TO SAVE THE GAME?(1/2/3)", white, 210, 70)
+		pygame.draw.rect(screen, black, [200, 50, 850, 70])
+		message_to_screen("WHICH FILE(1/2/3) DO YOU WANT TO SAVE THE GAME?	esc to end the game", white, 250, 70)
 		pygame.display.flip()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -197,33 +197,35 @@ def saving():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_ESCAPE:
 					saved = True
+					gameExit = True	
 				if event.key == pygame.K_1:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved1", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
 				if event.key == pygame.K_2:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved2", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
 				if event.key == pygame.K_3:
 					musicfrom += float(pygame.mixer.music.get_pos() / 1000)
-					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, background_file, nowplaying, playmusic, playmusic2]
+					data = [x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, background_file, nowplaying,  playmusic1, playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed]
 					with open("saved3", "wb") as f:
 						pickle.dump(data, f)
 						f.close()
 						saved = True
-	
-	gameExit = True			
+				else:
+					saved = True
+			
 	
 	
 def loading():
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
 	
 	original_board(background_file)
 	
@@ -278,10 +280,19 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 					
@@ -295,10 +306,19 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 					
@@ -312,16 +332,25 @@ def loading():
 					goch1 = data[4]
 					goch2 = data[5]
 					goch3 = data[6]
-					background_file = data[7]
-					nowplaying = data[8]
-					playmusic = data[9]
-					playmusic2 = data[10]
+					goch4 = data[7]
+					goch5 = data[8]
+					goch6 = data[9]
+					goch7 = data[10]
+					goch8 = data[11]
+					background_file = data[12]
+					nowplaying = data[13]
+					playmusic1 = data[14]
+					playmusic1_2 = data[15]
+					playmusic2 = data[16]
+					playmusic3 = data[17]
+					playmusic4 = data[18]
+					play_ed  = data[19]
 					loaded = True
 					change_background("start.png", background_file, 20)
 			
 
 def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
@@ -343,10 +372,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 			elif whattodo == "DATA2":
@@ -359,10 +397,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 			elif whattodo == "DATA3":
@@ -375,10 +422,19 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 				goch1 = data[4]
 				goch2 = data[5]
 				goch3 = data[6]
-				background_file = data[7]
-				nowplaying = data[8]
-				playmusic = data[9]
-				playmusic2 = data[10]
+				goch4 = data[7]
+				goch5 = data[8]
+				goch6 = data[9]
+				goch7 = data[10]
+				goch8 = data[11]
+				background_file = data[12]
+				nowplaying = data[13]
+				playmusic1 = data[14]
+				playmusic1_2 = data[15]
+				playmusic2 = data[16]
+				playmusic3 = data[17]
+				playmusic4 = data[18]
+				play_ed  = data[19]
 				loaded = True
 				change_background("start.png", background_file, 20)
 				
@@ -475,7 +531,7 @@ def chapter_1():
 			pygame.mixer.music.load("kara_m01.mp3")
 			musicfrom = 0
 			nowplaying = "kara_m01.mp3"
-			pygame.mixer.music.play(-1)	
+			pygame.mixer.music.play(-1, musicfrom)	
 			playmusic1 = False
 			
 		if x == 0:
@@ -971,7 +1027,7 @@ def chapter_1():
 			pygame.mixer.music.load("one_days_leave.mp3")
 			musicfrom = 0
 			nowplaying = "one_days_leave.mp3"
-			pygame.mixer.music.play(-1)	
+			pygame.mixer.music.play(-1, musicfrom)	
 			playmusic1_2 = False
 			
 			
@@ -1151,7 +1207,7 @@ def chapter_2():
 			pygame.mixer.music.load("timetolove_october.mp3")
 			musicfrom = 0
 			nowplaying = "timetolove_october.mp3"
-			pygame.mixer.music.play(-1)	
+			pygame.mixer.music.play(-1, musicfrom)	
 			playmusic2 = False
 			
 		
@@ -1707,7 +1763,7 @@ def chapter_3():
 			pygame.mixer.music.load("kara_m01.mp3")
 			musicfrom = 0
 			nowplaying = "kara_m01.mp3"
-			pygame.mixer.music.play(-1)	
+			pygame.mixer.music.play(-1, musicfrom)	
 			playmusic3 = False
 		
 		if x == 0:
@@ -2229,45 +2285,48 @@ def chapter_8():
 		
 def opening():
 	intro_delay_time = 1500
-	intro_change_speed = 48
+	intro_change_speed = 40
+	
+	
 
 	original_board("blackintro.png")
-	change_background("blackintro.png", "sakura.jpg", 20)
-	background_file = "sakura.jpg"
+	change_background("blackintro.png", "op_椰林大道.png", 20)
+	
+	background_file = "op_椰林大道.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("sakura.jpg", "aniback.jpg", intro_change_speed)
+	change_background("op_椰林大道.png", "op_總圖.png", intro_change_speed)
 
-	background_file = "aniback.jpg"
+	background_file = "op_總圖.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("aniback.jpg", "mizuumi.jpg", intro_change_speed)
+	change_background("op_總圖.png", "op_小徑.png", intro_change_speed)
 
-	background_file = "mizuumi.jpg"
+	background_file = "op_小徑.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("mizuumi.jpg", "clock.jpg", intro_change_speed)
+	change_background("op_小徑.png", "op_網球場.png", intro_change_speed)
 
-	background_file = "clock.jpg"
+	background_file = "op_網球場.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("clock.jpg", "arc.jpg", intro_change_speed)
+	change_background("op_網球場.png", "op_陽台.png", intro_change_speed)
 
-	background_file = "arc.jpg"
+	background_file = "op_陽台.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("arc.jpg", "校園.png", intro_change_speed)
-
-	background_file = "校園.png"
+	change_background("op_陽台.png", "op_電腦桌1.png", intro_change_speed)
+	
+	background_file = "op_電腦桌1.png"
 	original_board(background_file)
 	pygame.time.delay(intro_delay_time)
 	original_board(background_file)
-	change_background("校園.png", "blackintro.png", 40)
+	change_background("op_電腦桌1.png", "blackintro.png", 40)
 
 	background_file = "blackintro.png"
 	original_board(background_file)
@@ -2447,6 +2506,8 @@ goch2 = True
 goch3 = True
 goch4 = True
 goch5 = True
+goch6 = True
+goch7 = True
 goch8 = True
 go_ed = True
 	
@@ -2454,7 +2515,7 @@ musicfrom = 0.000
 nowplaying = ""
 				
 
-
+#n = input()
 
 pygame.mixer.music.load("sinners.wav")
 nowplaying = "sinners.wav"
@@ -2463,7 +2524,7 @@ pygame.mixer.music.load(nowplaying)
 pygame.mixer.music.play(-1, musicfrom)
 
 #game opening
-#opening()
+opening()
 				
 
 background_file = "start.png"
@@ -2471,6 +2532,9 @@ background = pygame.image.load(background_file).convert()
 
 original_board(background_file)
 loading()
+
+pygame.mixer.music.load(nowplaying)
+pygame.mixer.music.play(-1, musicfrom)
 #main loop
 
 original_board(background_file)
@@ -2536,11 +2600,14 @@ while not gameExit:
 	elif chapter_pointer == 4 and goch4 == False:
 		x = 0
 		par = 0
-		chapter_pointer = 8
+		chapter_pointer = 5
 		
 	
 	if chapter_pointer == 5 and goch5 == True:
-		chapter_3()
+		path_tennis = os.path.abspath('.')
+		path_tennis += "\\網球\\tennis.py"
+		os.system(path_tennis)
+		goch5 = False
 	elif chapter_pointer == 5 and goch5 == False:
 		x = 0
 		par = 0

@@ -2,6 +2,7 @@ import pygame
 import time
 import pickle
 import os
+from os.path import join
 pygame.init()
 
 pygame.font.get_fonts()
@@ -30,6 +31,9 @@ font_for_title = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
 #font_for_opening = pygame.font.SysFont('mingliupmingliumingliuhkscs',25)
 
 theblock_for_changing_background = 6
+	
+path_picture = os.path.abspath('.') + "\\圖片"	
+path_music = os.path.abspath('.') + "\\音樂"	
 	
 def message_to_screen(msg,color,x,y):
 	screen_text = font.render(msg,True,color)
@@ -68,7 +72,7 @@ def show_text_4(text4):
 def original_board(bg):
 	global background_file, background
 	background_file = bg
-	background = pygame.image.load(background_file).convert()
+	background = pygame.image.load(os.path.join(path_picture,background_file)).convert()
 	screen.blit(background, (0, 0))
 	pygame.display.update()
 	
@@ -80,10 +84,10 @@ class two_background(pygame.sprite.Sprite):
 		self.pre_background = nowback
 		self.des_background = newback
 		
-		self.preback = pygame.image.load(self.pre_background)
-		self.preback = self.preback.convert()
-		self.desback = pygame.image.load(self.des_background)
-		self.desback = self.desback.convert()
+		self.preback = pygame.image.load(os.path.join(path_picture,self.pre_background)).convert()
+		#self.preback = self.preback.convert()
+		self.desback = pygame.image.load(os.path.join(path_picture,self.des_background)).convert()
+		#self.desback = self.desback.convert()
 		
 		self.images = [self.preback, self.desback]
 		self.image = self.images[0]
@@ -447,7 +451,7 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 
 
 def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded, choice, z
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
@@ -528,7 +532,7 @@ def chapter_1():
 		
 		if playmusic1 == True:
 			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("kara_m01.mp3")
+			pygame.mixer.music.load(os.path.join(path_music, "kara_m01.mp3"))
 			musicfrom = 0
 			nowplaying = "kara_m01.mp3"
 			pygame.mixer.music.play(-1, musicfrom)	
@@ -1024,7 +1028,7 @@ def chapter_1():
 		
 		if playmusic1_2 == True:
 			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("one_days_leave.mp3")
+			pygame.mixer.music.load(os.path.join(path_music, "one_days_leave.mp3"))
 			musicfrom = 0
 			nowplaying = "one_days_leave.mp3"
 			pygame.mixer.music.play(-1, musicfrom)	
@@ -1204,7 +1208,7 @@ def chapter_2():
 		
 		if playmusic2 == True:
 			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("timetolove_october.mp3")
+			pygame.mixer.music.load(os.path.join(path_music, "timetolove_october.mp3"))
 			musicfrom = 0
 			nowplaying = "timetolove_october.mp3"
 			pygame.mixer.music.play(-1, musicfrom)	
@@ -1760,7 +1764,7 @@ def chapter_3():
 		
 		if playmusic3 == True:
 			pygame.mixer.music.fadeout(1000)
-			pygame.mixer.music.load("kara_m01.mp3")
+			pygame.mixer.music.load(os.path.join(path_music, "kara_m01.mp3"))
 			musicfrom = 0
 			nowplaying = "kara_m01.mp3"
 			pygame.mixer.music.play(-1, musicfrom)	
@@ -2506,8 +2510,6 @@ goch2 = True
 goch3 = True
 goch4 = True
 goch5 = True
-goch6 = True
-goch7 = True
 goch8 = True
 go_ed = True
 	
@@ -2515,12 +2517,12 @@ musicfrom = 0.000
 nowplaying = ""
 				
 
-#n = input()
 
-pygame.mixer.music.load("sinners.wav")
+
+#pygame.mixer.music.load(os.path.join(path_music, "sinners.wav"))
 nowplaying = "sinners.wav"
 
-pygame.mixer.music.load(nowplaying)
+pygame.mixer.music.load(os.path.join(path_music, nowplaying))
 pygame.mixer.music.play(-1, musicfrom)
 
 #game opening
@@ -2528,12 +2530,12 @@ opening()
 				
 
 background_file = "start.png"
-background = pygame.image.load(background_file).convert()
+background = pygame.image.load(os.path.join(path_picture,background_file)).convert()
 
 original_board(background_file)
 loading()
 
-#pygame.mixer.music.load(nowplaying)
+#pygame.mixer.music.load(os.path.join(path_music, nowplaying))
 #pygame.mixer.music.play(-1, musicfrom)
 #main loop
 

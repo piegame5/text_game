@@ -2533,8 +2533,8 @@ background = pygame.image.load(background_file).convert()
 original_board(background_file)
 loading()
 
-pygame.mixer.music.load(nowplaying)
-pygame.mixer.music.play(-1, musicfrom)
+#pygame.mixer.music.load(nowplaying)
+#pygame.mixer.music.play(-1, musicfrom)
 #main loop
 
 original_board(background_file)

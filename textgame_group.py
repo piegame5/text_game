@@ -23,7 +23,7 @@ pygame.display.update()
 
 clock = pygame.time.Clock()
 
-#crowdtalk_sound = pygame.mixer.Sound('talk_cut.wav')
+#crowdtalk_sound = pygame.mixer.Sound(os.path.join(path_music, 'talk_cut.wav'))
 
 
 font = pygame.font.SysFont('mingliupmingliumingliuhkscs',20)
@@ -2216,7 +2216,7 @@ def chapter_8():
 			show_text_1("我同意教授的話")
 			if play_ed == True:
 				pygame.mixer.music.fadeout(1000)
-				ed = pygame.mixer.Sound('ed.wav')
+				ed = pygame.mixer.Sound(os.path.join(path_music, 'ed.wav'))
 				musicfrom = 0
 				nowplaying = "ed.wav"
 				ed.play(loops = 0, fade_ms = 10000)
@@ -2342,7 +2342,7 @@ def ending():
 	
 	if play_ed == True:
 			pygame.mixer.music.fadeout(1000)
-			ed = pygame.mixer.Sound('ed.wav')
+			ed = pygame.mixer.Sound(os.path.join(path_music, 'ed.wav'))
 			musicfrom = 0
 			nowplaying = "ed.wav"
 			ed.play(loops = 0, fade_ms = 10000)
@@ -2492,7 +2492,7 @@ data = list()
 gameExit = False
 x = 0	
 par = 0
-chapter_pointer = 1
+chapter_pointer = 8
 
 choice = 0
 z = 0

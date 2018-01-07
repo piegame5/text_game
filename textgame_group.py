@@ -451,7 +451,7 @@ def button_for_intro(x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
 
 
 def button_for_chapter(msg, x_pos, y, w, h, line_thickness, ic, ac, whattodo = None):
-	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded
+	global x, par, chapter_pointer, musicfrom, goch1, goch2, goch3, goch4, goch5, goch6, goch7, goch8, data, background_file, gameExit, nowplaying, playmusic1,playmusic1_2, playmusic2, playmusic3, playmusic4, play_ed, loaded, choice, z
 	
 	mouse = pygame.mouse.get_pos()
 	click = pygame.mouse.get_pressed()
@@ -2510,6 +2510,8 @@ goch2 = True
 goch3 = True
 goch4 = True
 goch5 = True
+goch6 = True
+goch7 = True
 goch8 = True
 go_ed = True
 	
